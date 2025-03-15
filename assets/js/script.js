@@ -356,7 +356,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Add active class to clicked button and corresponding content
             button.classList.add('active');
-            document.getElementById(target).classList.add('active');
+            const targetElement = document.getElementById(target + '-content'); // Add '-content' suffix
+            if (targetElement) { // Check if the element exists
+                // Remove active class from all content elements
+                tabContents.forEach(content => content.classList.remove('active'));
+                // Add active class to the target content
+                targetElement.classList.add('active');
+            }
             
             // Scroll the active tab into view on mobile - center it if possible
             if (window.innerWidth <= 768) {
