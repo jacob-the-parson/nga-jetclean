@@ -1,0 +1,179 @@
+/* Mobile-specific fixes for image centering */
+
+/* Hide scrollbars across the entire page while maintaining scroll functionality */
+html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+body {
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS devices */
+}
+
+/* Hide scrollbars on specific scrollable elements while maintaining scroll functionality */
+.tab-navigation,
+.nav-menu,
+.seasons-container,
+div[style*="overflow: auto"],
+div[style*="overflow:auto"],
+div[style*="overflow-y: auto"],
+div[style*="overflow-y:auto"],
+div[style*="overflow-x: auto"],
+div[style*="overflow-x:auto"] {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.tab-navigation::-webkit-scrollbar,
+.nav-menu::-webkit-scrollbar,
+.seasons-container::-webkit-scrollbar,
+div[style*="overflow: auto"]::-webkit-scrollbar,
+div[style*="overflow:auto"]::-webkit-scrollbar,
+div[style*="overflow-y: auto"]::-webkit-scrollbar,
+div[style*="overflow-y:auto"]::-webkit-scrollbar,
+div[style*="overflow-x: auto"]::-webkit-scrollbar,
+div[style*="overflow-x:auto"]::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+/* Base fixes for all owner slideshow images */
+.owner-slideshow-img {
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Mobile fixes for owner slideshow */
+@media (max-width: 768px) {
+    .about-image {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .owner-slideshow-container {
+        position: relative;
+        margin: 0 auto;
+    }
+    
+    .owner-slideshow-img.active {
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+    }
+    
+    .owner-slideshow-img.prev {
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .about-image {
+        margin: 0 auto;
+        padding: 0;
+        text-align: center;
+    }
+    
+    .owner-slideshow-container {
+        margin: 0 auto 40px;
+        left: 0;
+        right: 0;
+        position: relative;
+    }
+    
+    .owner-slideshow-img {
+        margin: 0 auto !important;
+        left: 0 !important;
+        right: 0 !important;
+    }
+    
+    .image-caption {
+        width: 100%;
+        text-align: center;
+        left: 0;
+        right: 0;
+    }
+}
+
+/* Footer mobile fixes */
+@media (max-width: 768px) {
+    /* Footer logo section fixes */
+    .footer-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .footer-logo h2 {
+        font-size: 24px;
+        line-height: 1.2;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+
+    .footer-logo span {
+        font-size: 30px;
+        display: block;
+        text-align: center;
+    }
+
+    .footer-logo p {
+        text-align: center;
+        max-width: 100%;
+        padding: 0 15px;
+        margin: 15px auto;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .footer-content {
+        padding: 30px 15px;
+    }
+
+    .footer-links ul {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 0;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Smaller screens need even more compact layout */
+    .footer-logo h2 {
+        font-size: 20px;
+    }
+
+    .footer-logo span {
+        font-size: 26px;
+    }
+
+    .footer-logo p {
+        font-size: 13px;
+        line-height: 1.4;
+        margin: 10px auto;
+    }
+
+    .footer-content {
+        padding: 25px 10px;
+    }
+
+    .footer {
+        padding-bottom: 15px;
+    }
+}
