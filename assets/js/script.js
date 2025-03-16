@@ -13,34 +13,63 @@ document.addEventListener('DOMContentLoaded', function() {
             if (navMenu.classList.contains('active')) {
                 icon.classList.remove('fa-bars');
                 icon.classList.add('fa-times');
+                // Ensure hardware acceleration for smoother animations
+                navMenu.style.transform = 'translateX(0)';
             } else {
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
+                // Reset transform for mobile optimization
+                navMenu.style.transform = 'translateX(-100%)';
             }
         });
     }
     
-    // Handle dropdown menu toggles on mobile
+    // Handle dropdown menu toggles
     const dropdownLinks = document.querySelectorAll('.nav-menu li.has-dropdown > a');
     
     dropdownLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Only prevent default and toggle dropdown on mobile
+            // Always prevent default for dropdown parent links
+            e.preventDefault();
+            
+            // Toggle dropdown on mobile
             if (window.innerWidth <= 1100) {
-                e.preventDefault();
                 const parent = this.parentElement;
                 parent.classList.toggle('open');
+            } else {
+                // For desktop, toggle active-dropdown class
+                const parent = this.parentElement;
+                
+                // Close all other dropdowns first
+                dropdownLinks.forEach(otherLink => {
+                    if (otherLink !== link) {
+                        otherLink.parentElement.classList.remove('active-dropdown');
+                    }
+                });
+                
+                // Toggle the clicked dropdown
+                parent.classList.toggle('active-dropdown');
             }
         });
     });
     
-    // Close menu when clicking outside
+    // Close dropdowns when clicking outside
     document.addEventListener('click', function(event) {
+        // Close mobile menu when clicking outside
         if (!event.target.closest('.nav-menu') && !event.target.closest('.menu-toggle') && navMenu.classList.contains('active')) {
             navMenu.classList.remove('active');
+            // Reset transform for mobile optimization
+            navMenu.style.transform = 'translateX(-100%)';
             const icon = menuToggle.querySelector('i');
             icon.classList.remove('fa-times');
             icon.classList.add('fa-bars');
+        }
+        
+        // Close desktop dropdowns when clicking outside
+        if (!event.target.closest('.nav-menu li.has-dropdown')) {
+            dropdownLinks.forEach(link => {
+                link.parentElement.classList.remove('active-dropdown');
+            });
         }
     });
     
@@ -49,16 +78,29 @@ document.addEventListener('DOMContentLoaded', function() {
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
+            // Skip if this is a dropdown parent link (except for Services which is now a direct link)
+            if (link.parentElement.classList.contains('has-dropdown') && link === link.parentElement.querySelector('a')) {
+                return;
+            }
+            
             // Prevent default anchor click behavior
             e.preventDefault();
             
             // Close mobile menu if it's open
             if (navMenu.classList.contains('active')) {
                 navMenu.classList.remove('active');
+                // Reset transform for mobile optimization
+                navMenu.style.transform = 'translateX(-100%)';
                 const icon = menuToggle.querySelector('i');
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             }
+            
+            // Close any open dropdowns
+            dropdownLinks.forEach(link => {
+                link.parentElement.classList.remove('active-dropdown');
+                link.parentElement.classList.remove('open');
+            });
             
             // Get the target element
             const targetId = this.getAttribute('href');
@@ -88,6 +130,13 @@ document.addEventListener('DOMContentLoaded', function() {
             nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
         } else {
             nav.style.boxShadow = 'none';
+        }
+        
+        // Add 'scrolled' class for CTA button animation when scrolled down
+        if (scrollPosition > 200) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
         }
         
         // Update active menu item based on scroll position
@@ -152,31 +201,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 contactForm.reset();
             }
         });
-    }
-    
-    // Newsletter form in footer
-    const newsletterForm = document.querySelector('.footer-newsletter form');
-    
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const emailInput = newsletterForm.querySelector('input[type="email"]');
-            
-            if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
-                emailInput.style.borderColor = '#ff3860';
-            } else {
-                // In a real application, you would send the email to a server here
-                alert('Thank you for subscribing to our newsletter!');
-                newsletterForm.reset();
-            }
-        });
-    }
-    
-    // Email validation helper function
-    function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
     }
     
     // Add animation to features on scroll

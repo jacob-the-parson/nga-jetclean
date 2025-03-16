@@ -1,4 +1,5 @@
 /* General Styles */
+/* [OPTIMIZATION: Consider extracting these reset styles to a separate normalize.css file] */
 * {
     margin: 0;
     padding: 0;
@@ -12,16 +13,18 @@ body {
     background-color: #f9f9f9;
 }
 
+/* [OPTIMIZATION: Consider using CSS variables for container widths and padding] */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 15px;
+    padding: 0 20px;
 }
 
 section {
-    padding: 10px 0;
+    padding: 60px 0;
 }
 
+/* [OPTIMIZATION: Typography styles could be extracted to a typography.css file] */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     line-height: 1.3;
@@ -59,6 +62,7 @@ img {
     margin: 0 auto;
 }
 
+/* [OPTIMIZATION: Button styles could be extracted to a buttons.css component file] */
 .btn {
     display: inline-block;
     padding: 12px 30px;
@@ -68,6 +72,7 @@ img {
     cursor: pointer;
 }
 
+/* [OPTIMIZATION: Consider using CSS variables for colors - #0c4da2 is used repeatedly] */
 .btn-primary {
     background-color: #0c4da2;
     color: white;
@@ -87,24 +92,7 @@ img {
     box-shadow: 0 3px 10px rgba(12, 77, 162, 0.3);
 }
 
-.btn-primary::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.5);
-    opacity: 0;
-    border-radius: 100%;
-    transform: scale(1, 1) translate(-50%);
-    transform-origin: 50% 50%;
-}
-
-.btn-primary:hover::after {
-    animation: ripple 1s ease-out;
-}
-
+/* [OPTIMIZATION: Ripple animation could be simplified or made into a reusable utility] */
 @keyframes ripple {
     0% {
         transform: scale(0, 0);
@@ -114,6 +102,10 @@ img {
         transform: scale(20, 20);
         opacity: 0;
     }
+}
+
+.btn-primary:hover::after {
+    animation: ripple 1s ease-out;
 }
 
 .btn-primary:active::after {
@@ -133,6 +125,7 @@ img {
 }
 
 /* Navigation */
+/* [OPTIMIZATION: Navigation styles could be extracted to a nav.css component file] */
 nav {
     background-color: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -141,13 +134,15 @@ nav {
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 15px 0;
+    padding: 12px 0;
 }
 
 nav .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px;
+    width: 100%;
 }
 
 .logo a {
@@ -156,22 +151,30 @@ nav .container {
 }
 
 .logo h1 {
-    font-size: 28px;
+    font-size: 24px;
     color: #333;
+    white-space: nowrap;
 }
 
 .logo span {
     color: #0c4da2;
+    font-weight: 700;
+}
+
+/* Hide menu toggle on desktop */
+.menu-toggle {
+    display: none;
 }
 
 /* Main navigation menu */
 .nav-menu {
     display: flex;
     align-items: center;
+    margin-left: auto;
 }
 
 .nav-menu li {
-    margin-left: 25px;
+    margin-left: 20px;
     position: relative;
 }
 
@@ -205,31 +208,35 @@ nav .container {
 }
 
 .nav-menu li.has-dropdown > a {
-    padding-right: 18px;
+    position: relative;
+    padding-right: 28px;
 }
 
 .nav-menu li.has-dropdown > a:before {
-    content: '▾';
+    content: '\f107';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
     position: absolute;
-    right: 0;
-    top: 0;
-    font-size: 12px;
+    right: 8px; /* Increased from 2px to 8px */
+    top: 50%;
+    transform: translateY(-50%);
     transition: transform 0.3s ease;
 }
 
-.nav-menu li.has-dropdown:hover > a:before {
-    transform: rotate(180deg);
+/* Rotate arrow when dropdown is active */
+.nav-menu li.has-dropdown.active-dropdown > a:before {
+    transform: translateY(-50%) rotate(180deg);
 }
 
 .dropdown-menu {
     position: absolute;
     top: 100%;
-    left: -20px;
-    background-color: white;
+    left: 0;
+    width: 220px;
+    background-color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     padding: 10px 0;
-    min-width: 200px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
@@ -237,24 +244,25 @@ nav .container {
     z-index: 100;
 }
 
-.nav-menu li.has-dropdown:hover .dropdown-menu {
+/* Show dropdown only when parent has 'active-dropdown' class */
+.nav-menu li.has-dropdown.active-dropdown .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
 .dropdown-menu li {
+    display: block;
     margin: 0;
-    width: 100%;
 }
 
 .dropdown-menu a {
     padding: 10px 20px;
     display: block;
-    font-weight: 400;
-    color: #444;
-    border-left: 3px solid transparent;
+    color: #333;
+    font-size: 14px;
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .dropdown-menu a:after {
@@ -262,50 +270,102 @@ nav .container {
 }
 
 .dropdown-menu a:hover {
-    background-color: rgba(12, 77, 162, 0.05);
+    background-color: #f8f8f8;
     color: #0c4da2;
-    border-left-color: #0c4da2;
 }
 
-/* Get a quote button styling */
+/* Enhanced CTA Button Styling */
 .nav-cta-button {
     background-color: #0c4da2;
     color: white !important;
-    padding: 8px 16px !important;
+    padding: 10px 18px;
     border-radius: 5px;
-    margin-left: 15px;
+    font-weight: 500;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(12, 77, 162, 0.2);
+    box-shadow: 0 4px 15px rgba(12, 77, 162, 0.3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 15px;
+    margin-right: 0;
+    border: none;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 15px;
+    line-height: 1;
+    height: auto;
+    min-height: auto; /* Override min-height from mobile optimization */
+}
+
+/* Override the general nav-menu a padding-bottom */
+li a.nav-cta-button {
+    padding-bottom: 10px !important; /* Override the 5px padding-bottom from .nav-menu a */
 }
 
 .nav-cta-button:hover {
     background-color: #083b7e;
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(12, 77, 162, 0.3);
+    box-shadow: 0 6px 20px rgba(12, 77, 162, 0.4);
 }
 
 .nav-cta-button:after {
-    display: none !important;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
 }
 
-.menu-toggle {
-    display: none;
-    font-size: 24px;
-    cursor: pointer;
+.nav-cta-button:hover:after {
+    animation: ripple-effect 1s ease-out;
 }
 
-    /* Mobile CTA button */
-    .nav-cta-button {
-        margin: 15px 25px;
-        text-align: center;
-        display: block;
+@keyframes ripple-effect {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
     }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+/* Scroll effect for CTA button */
+.scrolled .nav-cta-button {
+    background-color: #64c1ff;
+    border-color: #64c1ff;
+    animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+    0% {
+        box-shadow: 0 0 0 0 rgba(100, 193, 255, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(100, 193, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(100, 193, 255, 0);
+    }
+}
 
 
-/* Hero Section */
 .hero {
     padding-top: 140px;
-    padding-bottom: 80px;
+    padding-bottom: 0; /* Remove bottom padding to eliminate gap */
     background-color: #f9f9f9;
     background-image: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.8)), url('../images/house_washing_hero_01.jpg');
     background-size: cover;
@@ -364,6 +424,7 @@ nav .container {
 /* Features/Services Section */
 .features {
     background-color: white;
+    padding-top: 0; /* Remove top padding to eliminate gap */
 }
 
 .service-video-banner {
@@ -584,6 +645,7 @@ nav .container {
     background-color: #f5f5f5;
     position: relative;
     overflow: hidden;
+    padding: 80px 0;
 }
 
 .about:before {
@@ -603,7 +665,7 @@ nav .container {
 
 @media (max-width: 768px) {
     .about {
-        padding: 60px 0 80px; /* Additional padding on mobile for better spacing */
+        padding: 60px 0; /* Consistent padding on mobile */
     }
     
     .about:before {
@@ -787,6 +849,7 @@ nav .container {
 /* Testimonials Section */
 .testimonials {
     background-color: white;
+    padding: 80px 0;
 }
 
 .testimonials-slider {
@@ -958,6 +1021,7 @@ nav .container {
 }
 
 /* Footer */
+/* [OPTIMIZATION: Footer styles are extensive and could be extracted to a footer.css file] */
 .footer {
     background: linear-gradient(135deg, #0a3d82, #072352);
     color: #fff;
@@ -1208,7 +1272,7 @@ nav .container {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .menu-toggle {
         display: block;
     }
@@ -1270,15 +1334,15 @@ nav .container {
     }
     
     .nav-menu li.has-dropdown > a:before {
-        right: 25px;
+        right: 20px;
     }
     
-    /* Mobile CTA button */
-    .nav-cta-button {
+    /* Mobile CTA button - Now handled in mobile-fixes.css */
+    /* .nav-cta-button {
         margin: 15px 25px;
         text-align: center;
         display: block;
-    }
+    } */
     
     .section-header h2 {
         font-size: 30px;
@@ -1773,10 +1837,6 @@ nav .container {
     }
 }
 
-/* ======================================
-   COMPONENTS FROM ADDITIONAL-COMPONENTS.CSS
-   ====================================== */
-
 /* Component Cards */
 .component-card {
     background-color: white;
@@ -2131,6 +2191,7 @@ nav .container {
     padding-right: 5px;
     background-color: #f9f9f9;
     border-radius: 8px 8px 0 0;
+    justify-content: center; /* Center align the tabs */
 }
 
 .tab-navigation::-webkit-scrollbar {
@@ -2277,7 +2338,8 @@ nav .container {
     }
     
     .tab-navigation {
-        padding: 10px 8px 8px;
+        padding: 8px 8px 8px;
+        justify-content: center; /* Maintain center alignment */
         background-color: #f5f5f5;
         border-radius: 8px;
         margin-bottom: 20px;
@@ -2411,6 +2473,7 @@ nav .container {
     
     .tab-navigation {
         padding: 8px 8px 8px;
+        justify-content: center; /* Maintain center alignment */
     }
     
     .tab-btn {
@@ -3004,6 +3067,23 @@ nav .container {
     
     .checkbox-item {
         min-width: 100%;
+    }
+}
+
+/* Media query for larger screens */
+@media (min-width: 1101px) {
+    .nav-flex {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-logo {
+        margin-right: 0;
+    }
+    
+    .nav-cta-button {
+        padding: 10px 20px;
+        margin-left: 25px;
     }
 }
 

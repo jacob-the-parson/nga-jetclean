@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
     initFaqAccordions();
     initProcessTimeline();
-    initServiceCalculator();
     initServiceMap();
     initMaterialTabs();
     initSeasonalTabs();
+    // Service calculator now handled in integrated-quote.js
 });
 
 // FAQ Accordion functionality
@@ -71,62 +71,6 @@ function initServiceMap() {
                 region.classList.remove('active');
                 regionInfo.style.display = 'none';
             });
-        });
-    }
-}
-
-// Service Calculator functionality
-function initServiceCalculator() {
-    const calculator = document.getElementById('service-calculator');
-    
-    if (calculator) {
-        const calculateBtn = calculator.querySelector('#calculate-btn');
-        const resultDiv = calculator.querySelector('#calculator-result');
-        
-        calculateBtn.addEventListener('click', () => {
-            // Get form values
-            const squareFeet = parseInt(calculator.querySelector('#square-feet').value) || 0;
-            const serviceType = calculator.querySelector('#service-type').value;
-            const extras = Array.from(calculator.querySelectorAll('input[name="extras"]:checked'))
-                .map(input => input.value);
-            
-            // Calculate estimated price (this would be replaced with your actual pricing logic)
-            let basePrice = 0;
-            switch(serviceType) {
-                case 'house-wash':
-                    basePrice = squareFeet * 0.15;
-                    break;
-                case 'driveway':
-                    basePrice = squareFeet * 0.20;
-                    break;
-                case 'roof':
-                    basePrice = squareFeet * 0.25;
-                    break;
-                case 'deck':
-                    basePrice = squareFeet * 0.30;
-                    break;
-            }
-            
-            // Add extras
-            let extrasPrice = 0;
-            extras.forEach(extra => {
-                if (extra === 'sanitize') extrasPrice += 25;
-                if (extra === 'sealing') extrasPrice += squareFeet * 0.10;
-                if (extra === 'gutter') extrasPrice += 45;
-            });
-            
-            const totalPrice = basePrice + extrasPrice;
-            
-            // Display result
-            resultDiv.innerHTML = `
-                <div class="result-card">
-                    <h4>Estimated Price Range</h4>
-                    <div class="price">$${Math.round(totalPrice * 0.9)} - $${Math.round(totalPrice * 1.1)}</div>
-                    <p>This estimate is based on the information provided. For an accurate quote, please contact us directly.</p>
-                    <a href="#" class="btn btn-primary">Request Quote</a>
-                </div>
-            `;
-            resultDiv.style.display = 'block';
         });
     }
 }
