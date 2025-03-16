@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 resultDiv.style.display = 'block';
                 
                 // Scroll to contact form
-                const contactFormColumn = document.querySelector('.contact-form-column');
+                const contactFormColumn = document.querySelector('.contact-form');
                 if (contactFormColumn) {
                     contactFormColumn.scrollIntoView({ 
                         behavior: 'smooth',

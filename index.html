@@ -6,8 +6,10 @@
     <title>North Georgia Jet Clean | Professional Pressure Washing</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/mobile-fixes.css">
+    <link rel="stylesheet" href="assets/css/merged-styles.css">
+    <!-- Old CSS files replaced with merged version -->
+    <!-- <link rel="stylesheet" href="assets/css/styles.css"> -->
+    <!-- <link rel="stylesheet" href="assets/css/mobile-fixes.css"> -->
 </head>
 <body>
     <!-- Navigation -->
@@ -832,62 +834,64 @@
                 </div>
                 
                 <form id="integrated-quote-form">
-                    <div class="two-column-layout">
+                    <div class="calculator-contact-row">
                         <!-- Calculator Column -->
-                        <div class="quote-calculator-column">
+                        <div class="calculator-container">
                             <h3>Step 1: Estimate Your Price</h3>
-                            <div class="form-group">
-                                <label for="square-feet">Approximate Square Footage:</label>
-                                <input type="number" id="square-feet" name="square-feet" placeholder="Enter square feet (e.g., 2000)" min="100" step="100">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="service-type">Service Type:</label>
-                                <div class="service-selection">
-                                    <div class="service-option">
-                                        <input type="checkbox" id="house-wash" name="services[]" value="house-wash">
-                                        <label for="house-wash">House Exterior Washing</label>
-                                    </div>
-                                    <div class="service-option">
-                                        <input type="checkbox" id="driveway" name="services[]" value="driveway">
-                                        <label for="driveway">Driveway & Concrete Cleaning</label>
-                                    </div>
-                                    <div class="service-option">
-                                        <input type="checkbox" id="roof" name="services[]" value="roof">
-                                        <label for="roof">Roof Soft Wash</label>
-                                    </div>
-                                    <div class="service-option">
-                                        <input type="checkbox" id="deck" name="services[]" value="deck">
-                                        <label for="deck">Deck & Patio Cleaning</label>
-                                    </div>
-                                    <div class="service-option coming-soon">
-                                        <input type="checkbox" id="commercial" name="services[]" value="commercial" disabled>
-                                        <label for="commercial">Commercial Services</label>
+                            <div class="calculator-form">
+                                <div class="form-group">
+                                    <label for="square-feet">Approximate Square Footage:</label>
+                                    <input type="number" id="square-feet" name="square-feet" placeholder="Enter square feet (e.g., 2000)" min="100" step="100">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="service-type">Service Type:</label>
+                                    <div class="service-selection">
+                                        <div class="service-option">
+                                            <input type="checkbox" id="house-wash" name="services[]" value="house-wash">
+                                            <label for="house-wash">House Exterior Washing</label>
+                                        </div>
+                                        <div class="service-option">
+                                            <input type="checkbox" id="driveway" name="services[]" value="driveway">
+                                            <label for="driveway">Driveway & Concrete Cleaning</label>
+                                        </div>
+                                        <div class="service-option">
+                                            <input type="checkbox" id="roof" name="services[]" value="roof">
+                                            <label for="roof">Roof Soft Wash</label>
+                                        </div>
+                                        <div class="service-option">
+                                            <input type="checkbox" id="deck" name="services[]" value="deck">
+                                            <label for="deck">Deck & Patio Cleaning</label>
+                                        </div>
+                                        <div class="service-option coming-soon">
+                                            <input type="checkbox" id="commercial" name="services[]" value="commercial" disabled>
+                                            <label for="commercial">Commercial Services</label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Additional Services:</label>
-                                <div class="checkbox-group">
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="sanitize" name="extras[]" value="sanitize">
-                                        <label for="sanitize">Surface Sanitizing</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="sealing" name="extras[]" value="sealing">
-                                        <label for="sealing">Sealing Treatment</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="gutter" name="extras[]" value="gutter">
-                                        <label for="gutter">Gutter Brightening</label>
+                                
+                                <div class="form-group">
+                                    <label>Additional Services:</label>
+                                    <div class="checkbox-group">
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="sanitize" name="extras[]" value="sanitize">
+                                            <label for="sanitize">Surface Sanitizing</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="sealing" name="extras[]" value="sealing">
+                                            <label for="sealing">Sealing Treatment</label>
+                                        </div>
+                                        <div class="checkbox-item">
+                                            <input type="checkbox" id="gutter" name="extras[]" value="gutter">
+                                            <label for="gutter">Gutter Brightening</label>
+                                        </div>
                                     </div>
                                 </div>
+                                
+                                <button type="button" id="calculate-btn" class="btn btn-primary">
+                                    <i class="fas fa-calculator"></i> Calculate Estimate
+                                </button>
                             </div>
-                            
-                            <button type="button" id="calculate-btn" class="btn btn-primary">
-                                <i class="fas fa-calculator"></i> Calculate Estimate
-                            </button>
                             
                             <div id="calculator-result" class="calculator-result">
                                 <!-- Results will be shown here via JavaScript -->
@@ -897,7 +901,7 @@
                         </div>
                         
                         <!-- Contact Column -->
-                        <div class="contact-form-column">
+                        <div class="contact-form">
                             <h3>Step 2: Your Contact Information</h3>
                             <div class="form-group">
                                 <label for="name">Your Name:</label>

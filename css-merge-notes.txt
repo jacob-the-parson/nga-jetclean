@@ -1,0 +1,149 @@
+# CSS Merge Strategy
+
+## Current Issues Identified
+1. Duplicate styles between styles.css and mobile-fixes.css
+2. Conflicting styles for the same elements (especially responsive styles)
+3. Inconsistent use of !important flags
+4. Multiple definitions of the same properties at different breakpoints
+5. Specific issue with hero and features sections gap that was fixed with padding adjustments
+
+## CSS Variables
+- mobile-fixes.css has CSS variables defined, but styles.css doesn't use them
+- We should consolidate all variables at the top of the merged file
+
+## Merge Approach
+1. Create a new merged CSS file (merged-styles.css)
+2. Structure the file in this order:
+   - CSS Variables (from mobile-fixes.css)
+   - Reset/Base styles
+   - Typography
+   - Layout/Grid
+   - Components (alphabetically)
+   - Utility classes
+   - Media queries (organized by breakpoint)
+
+3. For the hero/features sections specifically:
+   - Keep padding-bottom: 0 for hero section
+   - Keep padding-top: 0 for features section
+   - Remove duplicate service-video-banner height definitions
+   - Consolidate responsive styles
+
+4. Media Query Strategy:
+   - Group all styles for the same breakpoint together
+   - Use a mobile-first approach where possible
+   - Remove !important flags where not necessary
+   - Ensure specificity is handled properly
+
+## Implementation Steps
+1. ✅ Create merged-styles.css file
+2. ✅ Copy CSS variables from mobile-fixes.css
+3. ✅ Copy base styles from styles.css
+4. ✅ Add hero and features sections with fixed padding (0 bottom/top)
+5. ✅ Add consolidated media queries for responsive styles
+6. 🔄 Continue merging remaining styles from both files
+7. ✅ Update HTML to reference the new merged CSS file
+8. ✅ Test the merged file (initial test)
+
+## Progress Update
+- Created merged-styles.css with:
+  - CSS variables from mobile-fixes.css
+  - Base styles from styles.css
+  - Hero and features sections with proper padding (0 bottom/top)
+  - Media queries for responsive layouts
+  - Added animations section with water-drop animation
+  - Merged features-grid and feature-card styles
+  - Added demo-video section styles
+  - Added material-info section with tabs
+  - Added process-timeline section
+  - Added about section with owner slideshow
+  - Added testimonials section
+  - Added FAQ section with accordion functionality
+  - Added navigation section with dropdown menu
+  - Added seasonal maintenance tips section with season tabs
+  - Added contact/quote form section with improved inputs
+  - Updated all hardcoded values to use CSS variables
+  - Removed !important flags where not needed
+  - Created consistent structure for each section
+  - Added extra small screen (480px) breakpoint for certain elements
+- Updated index.html to reference the merged CSS file
+- Initial testing shows the hero and features sections connect properly without a gap
+
+## Next Steps
+1. Continue merging remaining styles from both files 
+   (footer, utility classes, etc.)
+2. Ensure all styles use CSS variables where appropriate
+3. Remove any remaining !important flags where not necessary
+4. Comprehensive testing across all screen sizes
+5. Remove the old CSS files once everything is working
+
+## Specific Conflicts Resolved
+1. service-video-banner height: 
+   - Base: 300px (desktop)
+   - Tablet: 250px (max-width: 1024px)
+   - Mobile: 200px (max-width: 767px)
+
+2. Hero/Features padding:
+   - Maintained hero padding-bottom: 0 at all breakpoints
+   - Maintained features padding-top: 0 at all breakpoints
+
+3. Features grid:
+   - Combined styles from both files
+   - Replaced hardcoded values with CSS variables
+   - Addressed responsive layout across breakpoints
+
+4. Material-info section:
+   - Consolidated tab styles
+   - Fixed responsive behavior for material grid
+   - Added fadeIn animation for tab content
+
+5. Process-timeline:
+   - Combined styles from both files
+   - Addressed responsive layout issues on mobile
+   - Added extra small screen (480px) breakpoint
+
+6. About section:
+   - Improved owner slideshow styling
+   - Consolidated responsive styles across breakpoints
+   - Used CSS variables for consistent styling
+
+7. Testimonials section:
+   - Improved grid layout for better responsiveness
+   - Optimized for various screen sizes
+   - Used CSS variables for consistent styling
+
+8. FAQ section:
+   - Consolidated accordion styles
+   - Improved responsive behavior
+   - Used CSS variables for consistent styling
+
+9. Navigation section:
+   - Merged desktop and mobile navigation styles
+   - Added hamburger menu animation for mobile
+   - Optimized dropdown menu behavior
+   - Used CSS variables for consistent styling
+   - Enhanced mobile navigation UX with proper touch targets
+   - Fixed CTA button styling in both desktop and mobile views
+   - Implemented performance optimizations for mobile navigation
+
+10. Seasonal Maintenance Tips section:
+    - Combined desktop and mobile styles for season tabs and tip cards
+    - Improved responsive behavior for season tabs (horizontal scrolling on mobile)
+    - Optimized tip cards layout for different screen sizes
+    - Used CSS variables for consistent styling
+    - Enhanced readability on mobile with adjusted font sizes and spacing
+
+11. Contact & Quote Form section:
+    - Consolidated form input/textarea/select styles
+    - Added focus states for better accessibility
+    - Optimized checkbox and form layouts for mobile devices
+    - Ensured proper touch targets on mobile (44px minimum)
+    - Improved form button styling and responsiveness
+    - Added social media links with hover effects
+    - Fixed iOS zoom issues with appropriate font sizes
+
+12. Quote Calculator section:
+    - Added comprehensive styling for calculator form
+    - Enhanced result display with animations
+    - Ensured responsive design for all device sizes
+    - Optimized input fields for touch devices
+    - Added hover effects and focus states for better UX
