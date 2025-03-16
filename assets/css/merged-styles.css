@@ -751,6 +751,7 @@ img {
     overflow: hidden;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
+    perspective: 1000px;
 }
 
 .owner-slideshow-img {
@@ -760,8 +761,25 @@ img {
     top: 0;
     left: 0;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: all 1s ease;
     object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 5px solid var(--white);
+    transform-origin: center center;
+}
+
+.owner-slideshow-img.active {
+    opacity: 1;
+    transform: translateZ(0) rotate(0deg);
+    z-index: 3;
+}
+
+.owner-slideshow-img.prev {
+    opacity: 0.7;
+    transform: translateZ(-50px) rotate(-5deg) translateX(-10px);
+    z-index: 1;
+    filter: brightness(0.8);
 }
 
 .image-caption {
