@@ -3877,3 +3877,9 @@ li a.nav-cta-button {
         background-color: var(--accent-color);
     }
 }
+
+/* Critical Timeline Styles - Always Active */
+.timeline-item.in-view .timeline-icon {
+    background-color: var(--accent-color) !important;
+    transition: background-color 0.3s ease;
+}
