@@ -209,37 +209,67 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to check if an element is in the viewport
     function isInViewport(element) {
         const rect = element.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        
+        // Element is considered in view when it's 20% visible
+        const threshold = windowHeight * 0.2;
+        
         return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            rect.top <= (windowHeight - threshold) &&
+            rect.bottom >= threshold
         );
     }
     
-    // Add animation class when elements come into view
-    function animateOnScroll() {
-        featureCards.forEach(card => {
-            if (isInViewport(card) && !card.classList.contains('animated')) {
-                card.classList.add('animated');
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
+    // Handle scroll animations for mobile
+    function handleScrollAnimations() {
+        const isMobile = window.innerWidth <= 767;
+        if (!isMobile) return;
+
+        const animatedElements = document.querySelectorAll('.feature-card, .video-item');
+        
+        animatedElements.forEach(element => {
+            if (isInViewport(element)) {
+                element.classList.add('in-view');
+                element.classList.remove('out-view');
+            } else {
+                if (element.classList.contains('in-view')) {
+                    element.classList.add('out-view');
+                    element.classList.remove('in-view');
+                }
             }
         });
     }
     
-    // Set initial state
-    featureCards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    });
+    // Initialize scroll animations
+    function initScrollAnimations() {
+        // Set initial state for elements
+        const animatedElements = document.querySelectorAll('.feature-card, .video-item');
+        animatedElements.forEach(element => {
+            if (isInViewport(element)) {
+                element.classList.add('in-view');
+            }
+        });
+
+        // Add scroll event listener with throttling
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    handleScrollAnimations();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Handle resize events
+        window.addEventListener('resize', () => {
+            handleScrollAnimations();
+        });
+    }
     
-    // Add scroll event listener
-    window.addEventListener('scroll', animateOnScroll);
-    
-    // Run once on load
-    animateOnScroll();
+    // Initialize scroll animations when DOM is loaded
+    initScrollAnimations();
     
     // Initialize slideshows
     function initializeSlideshows() {

@@ -702,21 +702,38 @@ img {
 }
 
 .slideshow-img {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 1.5s ease, transform 2s ease;
-    border-radius: var(--radius-md) var(--radius-md) 0 0;
-    transform: scale(1.05);
 }
 
-.slideshow-img:first-child {
+.slideshow-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.slideshow-img.loaded {
     opacity: 1;
-    transform: scale(1);
+}
+
+.image-slideshow-container {
+    position: relative;
+    min-height: 300px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    .image-slideshow-container {
+        min-height: 250px;
+    }
 }
 
 .slideshow-caption {
@@ -3566,19 +3583,67 @@ li a.nav-cta-button {
     border-radius: 8px;
 }
 
-.slideshow-img {
-    opacity: 0;
-    transition: opacity 0.3s ease-in;
+/* Card Animation States */
+.feature-card, .video-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.slideshow-img.loaded {
-    opacity: 1;
+@media (hover: hover) and (min-width: 768px) {
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+        border-bottom-color: var(--accent-color);
+    }
+
+    .video-item:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .video-item:hover .slideshow-caption {
+        opacity: 1;
+    }
 }
 
-.image-slideshow-container {
-    position: relative;
-    min-height: 300px; /* Adjust based on your actual image dimensions */
-    background: #f5f5f5;
-    border-radius: 8px;
-    overflow: hidden;
+/* Mobile Scroll Animation States */
+@media (max-width: 767px) {
+    .feature-card, .video-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .feature-card.in-view, .video-item.in-view {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .feature-card.out-view, .video-item.out-view {
+        opacity: 0.7;
+        transform: translateY(0);
+    }
+
+    .video-item.in-view .slideshow-caption {
+        opacity: 1;
+        transition-delay: 0.3s;
+    }
+}
+
+/* Stagger animation delays for cards */
+@media (max-width: 767px) {
+    .feature-card:nth-child(1), .video-item:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+    
+    .feature-card:nth-child(2), .video-item:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+    
+    .feature-card:nth-child(3), .video-item:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+    
+    .feature-card:nth-child(4), .video-item:nth-child(4) {
+        transition-delay: 0.4s;
+    }
 }
