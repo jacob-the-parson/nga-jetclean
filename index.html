@@ -5,9 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="canonical" href="https://nga-jetclean.onrender.com/" />
     <title>North Georgia Jet Clean | Professional Pressure Washing</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="assets/css/critical.css" as="style">
+    <link rel="preload" href="assets/js/script.js" as="script">
+    
+    <!-- Critical CSS -->
+    <link rel="stylesheet" href="assets/css/critical.css">
+    
+    <!-- Non-critical CSS loaded asynchronously -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="assets/css/styles.css" media="print" onload="this.media='all'">
+    
+    <!-- Fallback for browsers that don't support onload -->
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+        <link rel="stylesheet" href="assets/css/styles.css">
+    </noscript>
     
     <!-- Schema.org markup for Google -->
     <script type="application/ld+json">
@@ -1320,13 +1337,12 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 North Georgia Jet Clean. All Rights Reserved. | Owner: Andy Davis</p>
+                <p>&copy; 2025 North Georgia Jet Clean. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script src="assets/js/script.js"></script>
-    <script src="assets/js/additional-components.js"></script>
-    <script src="assets/js/integrated-quote.js"></script>
+    <!-- Load optimized JavaScript -->
+    <script src="assets/js/main.min.js" defer></script>
 </body>
 </html> 
