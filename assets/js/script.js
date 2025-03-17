@@ -244,8 +244,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     element.classList.add('in-view');
                     element.classList.remove('out-view');
                     
-                    // Reset animation for water drop effect
+                    // Add highlight class for border effect
                     if (element.classList.contains('feature-card')) {
+                        element.classList.add('highlight');
+                        
+                        // Reset animation for water drop effect
                         const afterElement = element.querySelector('::after');
                         if (afterElement) {
                             afterElement.style.animation = 'none';
@@ -259,6 +262,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (element.classList.contains('in-view')) {
                     element.classList.add('out-view');
                     element.classList.remove('in-view');
+                    // Remove highlight class when out of view on mobile
+                    if (element.classList.contains('feature-card')) {
+                        element.classList.remove('highlight');
+                    }
                 }
             }
         });
@@ -268,6 +275,22 @@ document.addEventListener('DOMContentLoaded', function() {
     function initScrollAnimations() {
         // Set initial state for elements
         const animatedElements = document.querySelectorAll('.feature-card, .video-item');
+        
+        // Add hover effect for desktop
+        if (window.innerWidth > 767) {
+            animatedElements.forEach(element => {
+                if (element.classList.contains('feature-card')) {
+                    element.addEventListener('mouseenter', () => {
+                        element.classList.add('highlight');
+                    });
+                    element.addEventListener('mouseleave', () => {
+                        if (!element.classList.contains('in-view')) {
+                            element.classList.remove('highlight');
+                        }
+                    });
+                }
+            });
+        }
         
         // Initial check for elements in viewport
         handleScrollAnimations();
@@ -290,6 +313,16 @@ document.addEventListener('DOMContentLoaded', function() {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
                 handleScrollAnimations();
+                
+                // Update hover effects based on screen size
+                const isDesktop = window.innerWidth > 767;
+                animatedElements.forEach(element => {
+                    if (element.classList.contains('feature-card')) {
+                        if (!isDesktop && !element.classList.contains('in-view')) {
+                            element.classList.remove('highlight');
+                        }
+                    }
+                });
             }, 250);
         });
     }
