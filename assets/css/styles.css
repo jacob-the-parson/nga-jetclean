@@ -848,11 +848,11 @@ img {
 
 /* Custom section header styling for surface guide */
 #materials {
-    padding-bottom: 30px; /* Reduced from 60px */
+    padding-bottom: 15px; /* Reduced from 60px */
 }
 
 #process {
-    padding-top: 30px; /* Reduced from 60px */
+    padding-top: 10px; /* Reduced from 60px */
 }
 
 /* Custom section header styling for surface guide */
