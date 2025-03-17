@@ -3708,14 +3708,14 @@ li a.nav-cta-button {
     .timeline-item:nth-child(odd),
     .timeline-item:nth-child(even) {
         flex-direction: column;
-        margin: 0 0 40px;
+        margin: 0 0 60px; /* Increased margin to accommodate icon */
         position: relative;
         background: var(--white);
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow-md);
         overflow: visible;
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 0; /* Start hidden */
+        transform: translateY(20px); /* Start offset */
         transition: opacity 0.5s ease, transform 0.5s ease;
         isolation: isolate;
         width: 100%;
@@ -3731,8 +3731,8 @@ li a.nav-cta-button {
     .timeline-icon {
         position: absolute;
         left: 50%;
-        top: 0;
-        transform: translate(-50%, -50%);
+        top: -28px; /* Half of icon height */
+        transform: translateX(-50%);
         width: 56px;
         height: 56px;
         font-size: 22px;
@@ -3745,6 +3745,7 @@ li a.nav-cta-button {
         justify-content: center;
         box-shadow: var(--shadow-md);
         pointer-events: none;
+        transition: none; /* Remove transitions */
     }
     
     .timeline-content,
@@ -3752,7 +3753,7 @@ li a.nav-cta-button {
     .timeline-item:nth-child(even) .timeline-content {
         width: 100%;
         margin: 0;
-        padding: 45px 20px 25px;
+        padding: 25px 20px; /* Reduced top padding */
         text-align: center;
         background: var(--white);
         display: flex;
@@ -3760,6 +3761,7 @@ li a.nav-cta-button {
         align-items: center;
         position: relative;
         z-index: 1;
+        transition: none; /* Remove transitions */
     }
     
     .timeline-content h4 {
@@ -3782,11 +3784,6 @@ li a.nav-cta-button {
     }
 
     /* Mobile scroll animation states */
-    .timeline-item {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
     .timeline-item.in-view {
         opacity: 1;
         transform: translateY(0);
@@ -3794,23 +3791,30 @@ li a.nav-cta-button {
 
     .timeline-item.out-view {
         opacity: 0.7;
-        transform: translateY(0);
     }
 
-    /* Remove hover effects on mobile */
-    .timeline-item:hover {
-        transform: none;
-        box-shadow: var(--shadow-md);
+    /* Remove ALL hover and touch effects on mobile */
+    .timeline-item:hover,
+    .timeline-item:active,
+    .timeline-item:focus {
+        transform: none !important;
+        box-shadow: var(--shadow-md) !important;
     }
 
-    .timeline-item:hover .timeline-icon {
-        transform: translate(-50%, -50%);
-        background-color: var(--primary-color);
+    .timeline-item:hover .timeline-icon,
+    .timeline-item:active .timeline-icon,
+    .timeline-item:focus .timeline-icon {
+        transform: translateX(-50%) !important;
+        background-color: var(--primary-color) !important;
+        box-shadow: var(--shadow-md) !important;
     }
 
-    .timeline-item:hover .timeline-content {
-        transform: none;
-        box-shadow: none;
+    .timeline-item:hover .timeline-content,
+    .timeline-item:active .timeline-content,
+    .timeline-item:focus .timeline-content {
+        transform: none !important;
+        box-shadow: none !important;
+        background-color: var(--white) !important;
     }
 
     /* Stagger animation delays */
@@ -3834,8 +3838,8 @@ li a.nav-cta-button {
 /* Desktop styles */
 @media (hover: hover) and (min-width: 768px) {
     .timeline-item {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .timeline-item:hover .timeline-icon {
@@ -3848,5 +3852,41 @@ li a.nav-cta-button {
         box-shadow: var(--primary-shadow);
         transform: translateY(-5px);
         background-color: var(--white);
+    }
+}
+
+/* Extra small mobile adjustments */
+@media screen and (max-width: 480px) {
+    .timeline-container {
+        max-width: calc(100% - 20px);
+    }
+    
+    .timeline-item,
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        margin: 0 0 50px;
+    }
+    
+    .timeline-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 18px;
+        top: -24px;
+    }
+    
+    .timeline-content,
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        padding: 20px 15px;
+    }
+    
+    .timeline-content h4 {
+        font-size: var(--font-size-md);
+        margin-bottom: 10px;
+    }
+    
+    .timeline-content p {
+        font-size: var(--font-size-sm);
+        line-height: 1.5;
     }
 }
