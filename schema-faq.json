@@ -1,0 +1,86 @@
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How often should I have my home exterior cleaned?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most homes in the North Georgia area, we recommend exterior cleaning every 12-18 months. However, homes in heavily wooded areas or with significant shade may need cleaning more frequently (every 8-12 months) due to faster mold and mildew growth. During your first service, we can assess your specific situation and recommend an optimal maintenance schedule."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is pressure washing safe for all surfaces?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, high-pressure washing isn't suitable for all surfaces. That's why we use various techniques, including soft washing for delicate surfaces like roofs, stucco, and some siding types. Our experienced technicians know exactly which pressure levels and cleaning methods are appropriate for each surface to ensure effective cleaning without causing damage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are your cleaning solutions safe for my plants and pets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we use environmentally responsible cleaning solutions that are biodegradable and safe for your landscaping when properly applied. Before any cleaning begins, we take precautions by pre-wetting plants and covering sensitive areas. After cleaning, we thoroughly rinse all treated areas to ensure no residue remains that could harm your plants or pets."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does a typical pressure washing service take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Service times vary depending on the size of your property and the specific services requested. A standard driveway cleaning might take 1-2 hours, while a complete home exterior package (including house, driveway, and sidewalks) typically takes 3-5 hours. When we provide your quote, we'll include an estimated timeline so you can plan accordingly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to be home during the service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "While we appreciate you being available at the beginning of service to discuss any specific concerns and at the end for a final inspection, it's not required that you remain home throughout the entire process. Many of our customers prefer to go about their day while we work. We just need access to water connections and any areas that need to be cleaned."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How soon can you schedule my cleaning service?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "During peak season (spring and summer), our typical lead time is 1-2 weeks. During off-peak months, we can often accommodate appointments within 2-5 days. For urgent situations, we do our best to fit you in sooner. We recommend booking in advance for regular maintenance to ensure you get your preferred time slot."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is soft washing and when is it used?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Soft washing is a cleaning method that uses low pressure and specialized solutions to remove dirt, algae, and other contaminants from sensitive surfaces. We primarily use soft washing for roof cleaning, as traditional pressure washing can damage shingles and reduce roof life. We also use soft washing techniques on delicate siding materials, stucco, and painted surfaces where high pressure might cause damage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer any guarantees on your work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we stand behind our work with a 100% satisfaction guarantee. If you're not completely satisfied with the results, we'll return and address any areas of concern at no additional cost. We also offer a 30-day clean guarantee for certain services like roof cleaning, where the full effects of our treatments continue working over time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What areas of North Georgia do you serve?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We provide pressure washing services throughout Cobb County and the greater North Georgia area, including Marietta, Kennesaw, Acworth, Woodstock, Canton, Smyrna, and Roswell. If you're unsure if we service your area, please contact us directly and we'll be happy to let you know."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does pressure washing cost?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pressure washing costs vary depending on the size of the area to be cleaned, the type of surfaces, the level of dirt or contamination, and the specific services requested. For example, a standard driveway cleaning might start around $199, while a complete home exterior package could range from $299 to $599 or more for larger homes. We provide free, detailed quotes so you'll know exactly what to expect before any work begins."
+      }
+    }
+  ]
+} 

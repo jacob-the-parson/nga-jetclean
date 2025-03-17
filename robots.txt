@@ -1,0 +1,12 @@
+# robots.txt for North Georgia Jet Clean
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /wp-login.php
+Disallow: /wp-admin/
+
+# Sitemap location
+Sitemap: https://nga-jetclean.onrender.com/sitemap.xml
+
+# Crawl-delay recommendation for bots (optional, not all bots respect this)
+Crawl-delay: 1 

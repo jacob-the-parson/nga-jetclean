@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+        http://www.google.com/schemas/sitemap-image/1.1
+        http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd">
+
+  <!-- Home Page -->
+  <url>
+    <loc>https://nga-jetclean.onrender.com/</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://nga-jetclean.onrender.com/images/home-hero-image.jpg</image:loc>
+      <image:title>North Georgia Jet Clean Professional Pressure Washing</image:title>
+      <image:caption>Professional pressure washing services for North Georgia homes and businesses</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Service Pages -->
+  <url>
+    <loc>https://nga-jetclean.onrender.com/services</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://nga-jetclean.onrender.com/services/home-exterior-washing</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://nga-jetclean.onrender.com/images/house-washing-after.jpg</image:loc>
+      <image:title>Home Exterior Washing Services</image:title>
+      <image:caption>Professional house washing and exterior cleaning in North Georgia</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://nga-jetclean.onrender.com/services/driveway-concrete-cleaning</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://nga-jetclean.onrender.com/images/driveway-cleaning-after.jpg</image:loc>
+      <image:title>Driveway and Concrete Cleaning</image:title>
+      <image:caption>Professional driveway and concrete cleaning services in North Georgia</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://nga-jetclean.onrender.com/services/roof-soft-washing</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://nga-jetclean.onrender.com/images/roof-cleaning-after.jpg</image:loc>
+      <image:title>Roof Soft Washing Services</image:title>
+      <image:caption>Safe and effective roof cleaning for North Georgia homes</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://nga-jetclean.onrender.com/services/commercial</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://nga-jetclean.onrender.com/images/commercial-cleaning.jpg</image:loc>
+      <image:title>Commercial Pressure Washing Services</image:title>
+      <image:caption>Professional pressure washing for North Georgia businesses</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Resource Pages -->
+  <url>
+    <loc>https://nga-jetclean.onrender.com/resources/surface-guide</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://nga-jetclean.onrender.com/resources/our-process</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://nga-jetclean.onrender.com/resources/faq</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://nga-jetclean.onrender.com/resources/maintenance-tips</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>quarterly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Core Pages -->
+  <url>
+    <loc>https://nga-jetclean.onrender.com/about</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <image:image>
+      <image:loc>https://nga-jetclean.onrender.com/images/andy-davis-owner.jpg</image:loc>
+      <image:title>About North Georgia Jet Clean</image:title>
+      <image:caption>Andy Davis, Owner of North Georgia Jet Clean</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://nga-jetclean.onrender.com/testimonials</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://nga-jetclean.onrender.com/quote</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Seasonal Pages (Consider updating frequency based on season) -->
+  <url>
+    <loc>https://nga-jetclean.onrender.com/seasonal/spring</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nga-jetclean.onrender.com/seasonal/summer</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nga-jetclean.onrender.com/seasonal/fall</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://nga-jetclean.onrender.com/seasonal/winter</loc>
+    <lastmod>2023-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset> 

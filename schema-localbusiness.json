@@ -1,0 +1,253 @@
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://nga-jetclean.onrender.com/#organization",
+  "name": "North Georgia Jet Clean",
+  "alternateName": "North GA Jet Clean",
+  "description": "Professional pressure washing services with Southern hospitality. Serving Cobb County and Greater North Georgia since 2015.",
+  "url": "https://nga-jetclean.onrender.com/",
+  "logo": "https://nga-jetclean.onrender.com/images/logo.png",
+  "image": "https://nga-jetclean.onrender.com/images/home-hero-image.jpg",
+  "priceRange": "$$",
+  "telephone": "+15551234567",
+  "email": "info@northgeorgiajetclean.com",
+  "currenciesAccepted": "USD",
+  "paymentAccepted": "Cash, Credit Card, Debit Card, Check",
+  "founder": {
+    "@type": "Person",
+    "name": "Andy Davis",
+    "jobTitle": "Owner"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "123 Main Street",
+    "addressLocality": "Marietta",
+    "addressRegion": "GA",
+    "postalCode": "30060",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 33.952602,
+    "longitude": -84.549933
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "16:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Sunday",
+      "opens": "00:00",
+      "closes": "00:00",
+      "description": "Closed"
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/northgeorgiajetclean",
+    "https://www.instagram.com/northgeorgiajetclean",
+    "https://twitter.com/ngajetclean",
+    "https://www.yelp.com/biz/north-georgia-jet-clean-marietta"
+  ],
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Marietta",
+      "sameAs": "https://en.wikipedia.org/wiki/Marietta,_Georgia"
+    },
+    {
+      "@type": "City",
+      "name": "Kennesaw",
+      "sameAs": "https://en.wikipedia.org/wiki/Kennesaw,_Georgia"
+    },
+    {
+      "@type": "City",
+      "name": "Smyrna",
+      "sameAs": "https://en.wikipedia.org/wiki/Smyrna,_Georgia"
+    },
+    {
+      "@type": "City",
+      "name": "Roswell",
+      "sameAs": "https://en.wikipedia.org/wiki/Roswell,_Georgia"
+    },
+    {
+      "@type": "City",
+      "name": "Woodstock",
+      "sameAs": "https://en.wikipedia.org/wiki/Woodstock,_Georgia"
+    },
+    {
+      "@type": "City",
+      "name": "Acworth",
+      "sameAs": "https://en.wikipedia.org/wiki/Acworth,_Georgia"
+    },
+    {
+      "@type": "City",
+      "name": "Canton",
+      "sameAs": "https://en.wikipedia.org/wiki/Canton,_Georgia"
+    }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Pressure Washing Services",
+    "itemListElement": [
+      {
+        "@type": "Service",
+        "name": "Home Exterior Washing",
+        "url": "https://nga-jetclean.onrender.com/services/home-exterior-washing",
+        "description": "Restore your home's curb appeal with our gentle yet effective house washing services.",
+        "provider": {
+          "@id": "https://nga-jetclean.onrender.com/#organization"
+        },
+        "serviceType": "House Washing",
+        "areaServed": "North Georgia",
+        "serviceOutput": "Clean home exterior free of dirt, mold, and mildew",
+        "offers": {
+          "@type": "Offer",
+          "price": "299.00",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "299.00",
+            "priceCurrency": "USD",
+            "description": "Starting price for an average-sized home",
+            "valueAddedTaxIncluded": true
+          }
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "Driveway & Concrete Cleaning",
+        "url": "https://nga-jetclean.onrender.com/services/driveway-concrete-cleaning",
+        "description": "Remove stubborn stains from driveways, sidewalks, and patios with our professional concrete cleaning services.",
+        "provider": {
+          "@id": "https://nga-jetclean.onrender.com/#organization"
+        },
+        "serviceType": "Concrete Cleaning",
+        "areaServed": "North Georgia",
+        "serviceOutput": "Clean, stain-free concrete surfaces",
+        "offers": {
+          "@type": "Offer",
+          "price": "199.00",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "199.00",
+            "priceCurrency": "USD",
+            "description": "Starting price for a standard driveway",
+            "valueAddedTaxIncluded": true
+          }
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "Roof Soft Washing",
+        "url": "https://nga-jetclean.onrender.com/services/roof-soft-washing",
+        "description": "Extend your roof's lifespan and improve curb appeal by safely removing harmful moss and algae.",
+        "provider": {
+          "@id": "https://nga-jetclean.onrender.com/#organization"
+        },
+        "serviceType": "Roof Cleaning",
+        "areaServed": "North Georgia",
+        "serviceOutput": "Clean, algae and moss-free roof",
+        "offers": {
+          "@type": "Offer",
+          "price": "349.00",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "349.00",
+            "priceCurrency": "USD",
+            "description": "Starting price for an average-sized roof",
+            "valueAddedTaxIncluded": true
+          }
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "Commercial Pressure Washing",
+        "url": "https://nga-jetclean.onrender.com/services/commercial",
+        "description": "Keep your business looking professional with our commercial pressure washing solutions.",
+        "provider": {
+          "@id": "https://nga-jetclean.onrender.com/#organization"
+        },
+        "serviceType": "Commercial Cleaning",
+        "areaServed": "North Georgia",
+        "serviceOutput": "Professional-looking commercial property exteriors",
+        "offers": {
+          "@type": "Offer",
+          "price": "499.00",
+          "priceCurrency": "USD",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "price": "499.00",
+            "priceCurrency": "USD",
+            "description": "Starting price for small commercial properties",
+            "valueAddedTaxIncluded": true
+          }
+        }
+      }
+    ]
+  },
+  "potentialAction": {
+    "@type": "ReserveAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://nga-jetclean.onrender.com/quote",
+      "inLanguage": "en-US",
+      "actionPlatform": [
+        "http://schema.org/DesktopWebPlatform",
+        "http://schema.org/MobileWebPlatform"
+      ]
+    },
+    "result": {
+      "@type": "Quote",
+      "description": "Free pressure washing quote"
+    }
+  },
+  "Review": [
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Michael Thompson"
+      },
+      "datePublished": "2023-04-15",
+      "reviewBody": "North Georgia Jet Clean transformed our home's exterior! The siding looks brand new, and they were able to remove years of grime from our driveway. Andy and his team were professional and thorough."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Jennifer Williams"
+      },
+      "datePublished": "2023-03-22",
+      "reviewBody": "As a business owner, I need my storefront to look inviting. North Georgia Jet Clean keeps our sidewalks and exterior spotless with their regular maintenance service. Highly recommend!"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "87",
+    "bestRating": "5",
+    "worstRating": "1"
+  }
+} 
