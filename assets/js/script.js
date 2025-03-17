@@ -211,8 +211,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const rect = element.getBoundingClientRect();
         const windowHeight = window.innerHeight || document.documentElement.clientHeight;
         
-        // Element is considered in view when it's 20% visible
-        const threshold = windowHeight * 0.2;
+        // Element is considered in view when it's 30% visible
+        const threshold = windowHeight * 0.3;
         
         return (
             rect.top <= (windowHeight - threshold) &&
@@ -223,15 +223,26 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle scroll animations for mobile
     function handleScrollAnimations() {
         const isMobile = window.innerWidth <= 767;
-        if (!isMobile) return;
-
         const animatedElements = document.querySelectorAll('.feature-card, .video-item');
         
         animatedElements.forEach(element => {
             if (isInViewport(element)) {
-                element.classList.add('in-view');
-                element.classList.remove('out-view');
-            } else {
+                if (!element.classList.contains('in-view')) {
+                    element.classList.add('in-view');
+                    element.classList.remove('out-view');
+                    
+                    // Reset animation for water drop effect
+                    if (element.classList.contains('feature-card')) {
+                        const afterElement = element.querySelector('::after');
+                        if (afterElement) {
+                            afterElement.style.animation = 'none';
+                            // Force reflow
+                            void afterElement.offsetWidth;
+                            afterElement.style.animation = null;
+                        }
+                    }
+                }
+            } else if (isMobile) {
                 if (element.classList.contains('in-view')) {
                     element.classList.add('out-view');
                     element.classList.remove('in-view');
@@ -244,12 +255,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function initScrollAnimations() {
         // Set initial state for elements
         const animatedElements = document.querySelectorAll('.feature-card, .video-item');
-        animatedElements.forEach(element => {
-            if (isInViewport(element)) {
-                element.classList.add('in-view');
-            }
-        });
-
+        
+        // Initial check for elements in viewport
+        handleScrollAnimations();
+        
         // Add scroll event listener with throttling
         let ticking = false;
         window.addEventListener('scroll', () => {
@@ -261,10 +270,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 ticking = true;
             }
         });
-
+        
         // Handle resize events
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            handleScrollAnimations();
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                handleScrollAnimations();
+            }, 250);
         });
     }
     

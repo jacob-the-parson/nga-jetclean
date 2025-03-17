@@ -61,15 +61,11 @@
 /* Water drop animation */
 @keyframes water-drop {
     0% {
-        transform: translateY(0) scale(1);
+        transform: scale(1, 1) translateY(-20px);
         opacity: 0.8;
     }
-    70% {
-        transform: translateY(15px) scale(0.8);
-        opacity: 0.5;
-    }
     100% {
-        transform: translateY(20px) scale(0.5);
+        transform: scale(1, 2) translateY(20px);
         opacity: 0;
     }
 }
@@ -536,12 +532,14 @@ img {
     border-radius: var(--radius-lg);
     padding: 30px;
     text-align: center;
-    transition: var(--transition-standard);
+    transition: all 0.3s ease;
     border-bottom: 3px solid var(--primary-color);
     position: relative;
     overflow: hidden;
     cursor: pointer;
     box-shadow: var(--shadow-md);
+    opacity: 0;
+    transform: translateY(20px);
 }
 
 .feature-card::after {
@@ -558,15 +556,113 @@ img {
     pointer-events: none;
 }
 
-.feature-card:hover::after {
-    animation: water-drop 1.5s ease-in infinite;
-    opacity: 0.8;
+.video-item {
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-    border-bottom-color: var(--accent-color);
+/* Water drop animation for feature cards */
+.feature-card::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(12, 77, 162, 0.4);
+    border-radius: 50%;
+    top: 10px;
+    right: 30px;
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+/* Desktop hover effects */
+@media (hover: hover) and (min-width: 768px) {
+    .feature-card {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .video-item {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+        border-bottom-color: var(--accent-color);
+    }
+
+    .feature-card:hover::after {
+        animation: water-drop 1.5s ease-in infinite;
+        opacity: 0.8;
+    }
+
+    .video-item:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .video-item:hover .slideshow-caption {
+        opacity: 1;
+    }
+}
+
+/* Mobile scroll animation states */
+@media (max-width: 767px) {
+    .feature-card.in-view, .video-item.in-view {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.5s ease;
+    }
+
+    .feature-card.in-view::after {
+        animation: water-drop 1.5s ease-in infinite;
+        opacity: 0.8;
+    }
+
+    .feature-card.out-view, .video-item.out-view {
+        opacity: 0.7;
+        transform: translateY(0);
+    }
+
+    .feature-card.out-view::after {
+        animation: none;
+    }
+
+    .video-item.in-view .slideshow-caption {
+        opacity: 1;
+        transition-delay: 0.3s;
+    }
+}
+
+/* Stagger animation delays for cards */
+@media (max-width: 767px) {
+    .feature-card:nth-child(1), .video-item:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+    
+    .feature-card:nth-child(2), .video-item:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+    
+    .feature-card:nth-child(3), .video-item:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+    
+    .feature-card:nth-child(4), .video-item:nth-child(4) {
+        transition-delay: 0.4s;
+    }
 }
 
 .feature-card h3 {
@@ -650,30 +746,6 @@ img {
     grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     margin-top: 30px;
-}
-
-.video-item {
-    background-color: var(--white);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    overflow: hidden;
-    transition: var(--transition-standard);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
-.video-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
-}
-
-.video-wrapper, .image-wrapper {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
 }
 
 .video-item h4 {
@@ -3581,69 +3653,4 @@ li a.nav-cta-button {
     animation: shimmer 2s infinite linear;
     display: block;
     border-radius: 8px;
-}
-
-/* Card Animation States */
-.feature-card, .video-item {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-@media (hover: hover) and (min-width: 768px) {
-    .feature-card:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-lg);
-        border-bottom-color: var(--accent-color);
-    }
-
-    .video-item:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-lg);
-    }
-
-    .video-item:hover .slideshow-caption {
-        opacity: 1;
-    }
-}
-
-/* Mobile Scroll Animation States */
-@media (max-width: 767px) {
-    .feature-card, .video-item {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .feature-card.in-view, .video-item.in-view {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .feature-card.out-view, .video-item.out-view {
-        opacity: 0.7;
-        transform: translateY(0);
-    }
-
-    .video-item.in-view .slideshow-caption {
-        opacity: 1;
-        transition-delay: 0.3s;
-    }
-}
-
-/* Stagger animation delays for cards */
-@media (max-width: 767px) {
-    .feature-card:nth-child(1), .video-item:nth-child(1) {
-        transition-delay: 0.1s;
-    }
-    
-    .feature-card:nth-child(2), .video-item:nth-child(2) {
-        transition-delay: 0.2s;
-    }
-    
-    .feature-card:nth-child(3), .video-item:nth-child(3) {
-        transition-delay: 0.3s;
-    }
-    
-    .feature-card:nth-child(4), .video-item:nth-child(4) {
-        transition-delay: 0.4s;
-    }
 }
