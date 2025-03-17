@@ -160,6 +160,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Initialize features that don't depend on scroll position or final layout
 function initializeImmediateFeatures() {
+    // Show cards immediately with initial state
+    const animatedElements = document.querySelectorAll('.feature-card, .video-item');
+    animatedElements.forEach(element => {
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+    });
+    
     // Mobile menu toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -291,53 +298,6 @@ function initializeTabs() {
         }
     }
 }
-
-// Smooth Scrolling for Navigation Links
-const navLinks = document.querySelectorAll('a[href^="#"]');
-
-navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-        // Skip if this is a dropdown parent link (except for Services which is now a direct link)
-        if (link.parentElement.classList.contains('has-dropdown') && link === link.parentElement.querySelector('a')) {
-            return;
-        }
-        
-        // Prevent default anchor click behavior
-        e.preventDefault();
-        
-        // Close mobile menu if it's open
-        if (navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            // Reset transform for mobile optimization
-            navMenu.style.transform = 'translateX(-100%)';
-            const icon = menuToggle.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-        
-        // Close any open dropdowns
-        dropdownLinks.forEach(link => {
-            link.parentElement.classList.remove('active-dropdown');
-            link.parentElement.classList.remove('open');
-        });
-        
-        // Get the target element
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-            // Scroll to target element
-            window.scrollTo({
-                top: targetElement.offsetTop - 80, // Adjust for fixed header
-                behavior: 'smooth'
-            });
-            
-            // Update active link
-            navLinks.forEach(link => link.classList.remove('active'));
-            this.classList.add('active');
-        }
-    });
-});
 
 // Active Menu Item on Scroll
 window.addEventListener('scroll', function() {
@@ -481,6 +441,20 @@ function handleScrollAnimations() {
 function initScrollAnimations() {
     // Set initial state for elements
     const animatedElements = document.querySelectorAll('.feature-card, .video-item');
+    
+    // Reset elements for scroll animations
+    animatedElements.forEach(element => {
+        // Only reset if not already in view
+        if (!isInViewport(element)) {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+        } else {
+            element.classList.add('in-view');
+            if (element.classList.contains('feature-card')) {
+                element.classList.add('highlight');
+            }
+        }
+    });
     
     // Add hover effect for desktop
     if (window.innerWidth > 767) {
