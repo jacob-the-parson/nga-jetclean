@@ -241,44 +241,61 @@ document.addEventListener('DOMContentLoaded', function() {
     // Run once on load
     animateOnScroll();
     
-    // Image slideshow functionality for Cards with image slideshows
-    const slideshowContainers = document.querySelectorAll('.image-slideshow-container');
-    
-    // Apply staggered timing to slideshow cards
-    slideshowContainers.forEach((container, index) => {
-        const slideshowImages = container.querySelectorAll('.slideshow-img');
-        let currentImageIndex = 0;
+    // Initialize slideshows
+    function initializeSlideshows() {
+        const slideshowContainers = document.querySelectorAll('.image-slideshow-container');
         
-        // Function to show next image in slideshow
-        function showNextImage() {
-            // Hide all images
-            slideshowImages.forEach(img => {
-                img.style.opacity = '0';
+        slideshowContainers.forEach(container => {
+            const images = container.querySelectorAll('.slideshow-img');
+            const skeleton = container.querySelector('.image-skeleton');
+            let currentIndex = 0;
+            let imagesLoaded = 0;
+            
+            // Handle image loading
+            images.forEach(img => {
+                if (img.complete) {
+                    handleImageLoad(img);
+                } else {
+                    img.addEventListener('load', () => handleImageLoad(img));
+                }
+                
+                img.addEventListener('error', () => {
+                    console.error('Error loading image:', img.src);
+                    imagesLoaded++;
+                });
             });
             
-            // Increment index and loop back to 0 if needed
-            currentImageIndex = (currentImageIndex + 1) % slideshowImages.length;
+            function handleImageLoad(img) {
+                img.classList.add('loaded');
+                imagesLoaded++;
+                
+                // When all images are loaded, remove skeleton
+                if (imagesLoaded === images.length) {
+                    skeleton.style.display = 'none';
+                }
+                
+                // Show first image
+                if (imagesLoaded === 1) {
+                    images[0].style.display = 'block';
+                }
+            }
             
-            // Show current image
-            slideshowImages[currentImageIndex].style.opacity = '1';
+            // Slideshow rotation
+            function rotateImages() {
+                images.forEach(img => img.style.display = 'none');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].style.display = 'block';
+            }
             
-            console.log(`Slideshow ${index + 1} rotated to image ${currentImageIndex + 1} of ${slideshowImages.length}`);
-        }
-        
-        // Stagger the start times - 1 second delay for each subsequent slideshow
-        const staggerDelay = 1000 * index;
-        
-        // Initial delay before we start the interval
-        setTimeout(() => {
-            // Start the slideshow rotation
-            const slideshowInterval = setInterval(showNextImage, 3000);
-            
-            // Store the interval reference on the container element for cleanup if needed
-            container.dataset.intervalId = slideshowInterval;
-            
-            console.log(`Started slideshow ${index + 1} after ${staggerDelay}ms delay`);
-        }, staggerDelay);
-    });
+            // Start rotation after all images are loaded
+            if (images.length > 1) {
+                setInterval(rotateImages, 3000);
+            }
+        });
+    }
+    
+    // Initialize slideshows when DOM is loaded
+    initializeSlideshows();
     
     // Before/After image rotation for any remaining cards with before/after containers
     const beforeAfterContainers = document.querySelectorAll('.image-wrapper .before-after-container');
