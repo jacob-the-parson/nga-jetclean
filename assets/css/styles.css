@@ -3714,9 +3714,9 @@ li a.nav-cta-button {
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow-md);
         overflow: visible;
-        opacity: 1; /* Set default opacity to 1 */
-        transform: translateY(0); /* Reset default transform */
-        transition: all 0.5s ease;
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.5s ease, transform 0.5s ease;
         isolation: isolate;
         width: 100%;
         max-width: 500px;
@@ -3744,7 +3744,7 @@ li a.nav-cta-button {
         align-items: center;
         justify-content: center;
         box-shadow: var(--shadow-md);
-        transition: all 0.5s ease;
+        pointer-events: none;
     }
     
     .timeline-content,
@@ -3792,13 +3792,25 @@ li a.nav-cta-button {
         transform: translateY(0);
     }
 
-    .timeline-item.in-view .timeline-icon {
-        background: var(--accent-color);
-    }
-
     .timeline-item.out-view {
         opacity: 0.7;
         transform: translateY(0);
+    }
+
+    /* Remove hover effects on mobile */
+    .timeline-item:hover {
+        transform: none;
+        box-shadow: var(--shadow-md);
+    }
+
+    .timeline-item:hover .timeline-icon {
+        transform: translate(-50%, -50%);
+        background-color: var(--primary-color);
+    }
+
+    .timeline-item:hover .timeline-content {
+        transform: none;
+        box-shadow: none;
     }
 
     /* Stagger animation delays */
@@ -3825,39 +3837,16 @@ li a.nav-cta-button {
         opacity: 1 !important;
         transform: translateY(0) !important;
     }
-}
 
-/* Extra small mobile adjustments */
-@media screen and (max-width: 480px) {
-    .timeline-container {
-        max-width: calc(100% - 20px);
+    .timeline-item:hover .timeline-icon {
+        background-color: var(--accent-color);
+        transform: translateX(-50%) scale(1.1);
+        box-shadow: var(--shadow-lg);
     }
-    
-    .timeline-item,
-    .timeline-item:nth-child(odd),
-    .timeline-item:nth-child(even) {
-        margin: 0 0 35px;
-    }
-    
-    .timeline-icon {
-        width: 48px;
-        height: 48px;
-        font-size: 18px;
-    }
-    
-    .timeline-content,
-    .timeline-item:nth-child(odd) .timeline-content,
-    .timeline-item:nth-child(even) .timeline-content {
-        padding: 40px 15px 20px;
-    }
-    
-    .timeline-content h4 {
-        font-size: var(--font-size-md);
-        margin-bottom: 10px;
-    }
-    
-    .timeline-content p {
-        font-size: var(--font-size-sm);
-        line-height: 1.5;
+
+    .timeline-item:hover .timeline-content {
+        box-shadow: var(--primary-shadow);
+        transform: translateY(-5px);
+        background-color: var(--white);
     }
 }
