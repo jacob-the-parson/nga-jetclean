@@ -341,27 +341,14 @@ document.addEventListener('DOMContentLoaded', function() {
             if (isInViewport(element)) {
                 if (!element.classList.contains('in-view')) {
                     element.classList.add('in-view');
-                    element.classList.remove('out-view');
-                    
-                    // Add highlight class for border effect
                     if (element.classList.contains('feature-card')) {
                         element.classList.add('highlight');
-                        
-                        // Reset animation for water drop effect
-                        const afterElement = element.querySelector('::after');
-                        if (afterElement) {
-                            afterElement.style.animation = 'none';
-                            // Force reflow
-                            void afterElement.offsetWidth;
-                            afterElement.style.animation = null;
-                        }
                     }
                 }
             } else if (isMobile) {
                 if (element.classList.contains('in-view')) {
                     element.classList.add('out-view');
                     element.classList.remove('in-view');
-                    // Remove highlight class when out of view on mobile
                     if (element.classList.contains('feature-card')) {
                         element.classList.remove('highlight');
                     }
