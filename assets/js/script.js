@@ -366,6 +366,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Show first image immediately once loaded
                 if (imagesLoaded === 1) {
                     picture.style.display = 'block';
+                    picture.style.opacity = '1';
+                } else {
+                    picture.style.display = 'none';
+                    picture.style.opacity = '0';
                 }
                 
                 checkAllImagesLoaded();
@@ -378,17 +382,48 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
-            // Slideshow rotation
+            // Slideshow rotation with fade transition
             function rotateImages() {
-                slideshowPictures.forEach(picture => picture.style.display = 'none');
-                currentIndex = (currentIndex + 1) % slideshowPictures.length;
-                slideshowPictures[currentIndex].style.display = 'block';
+                const currentSlide = slideshowPictures[currentIndex];
+                const nextIndex = (currentIndex + 1) % slideshowPictures.length;
+                const nextSlide = slideshowPictures[nextIndex];
+                
+                // Prepare next slide
+                nextSlide.style.display = 'block';
+                nextSlide.style.opacity = '0';
+                
+                // Trigger reflow to ensure transitions work
+                void nextSlide.offsetWidth;
+                
+                // Fade out current slide
+                currentSlide.style.opacity = '0';
+                
+                // Fade in next slide
+                nextSlide.style.opacity = '1';
+                
+                // After transition, hide the old slide
+                setTimeout(() => {
+                    currentSlide.style.display = 'none';
+                }, 500); // Match this to your CSS transition duration
+                
+                currentIndex = nextIndex;
             }
             
             // Start rotation after a staggered delay
             if (slideshowPictures.length > 1) {
                 // Add 1.5 second offset for each slideshow
                 const staggerDelay = containerIndex * 1500;
+                
+                // Set initial styles for smooth transitions
+                slideshowPictures.forEach(picture => {
+                    picture.style.transition = 'opacity 0.5s ease-in-out';
+                    picture.style.position = 'absolute';
+                    picture.style.top = '0';
+                    picture.style.left = '0';
+                    picture.style.width = '100%';
+                    picture.style.height = '100%';
+                });
+                
                 setTimeout(() => {
                     setInterval(rotateImages, 3000);
                     console.log(`Started slideshow ${containerIndex + 1} after ${staggerDelay}ms delay`);
