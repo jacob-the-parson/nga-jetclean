@@ -17,7 +17,7 @@ This document contains the optimized meta tags for key pages of the North Georgi
 
 **Meta Description:**
 ```html
-<meta name="description" content="North Georgia's most trusted pressure washing team delivering spotless results for homes and businesses. Free estimates, eco-friendly methods, and Southern hospitality guaranteed.">
+<meta name="description" content="Professional pressure washing services in North Georgia delivering spotless results for homes and businesses. Free estimates, eco-friendly methods, and Southern hospitality guaranteed.">
 ```
 
 **Canonical Tag:**
@@ -28,7 +28,7 @@ This document contains the optimized meta tags for key pages of the North Georgi
 **Open Graph Tags:**
 ```html
 <meta property="og:title" content="Professional Pressure Washing Services in North Georgia | Jet Clean">
-<meta property="og:description" content="North Georgia's most trusted pressure washing team delivering spotless results for homes and businesses. Free estimates and satisfaction guaranteed.">
+<meta property="og:description" content="Professional pressure washing services delivering spotless results for homes and businesses. Free estimates and satisfaction guaranteed.">
 <meta property="og:image" content="https://nga-jetclean.onrender.com/images/home-hero-image.jpg">
 <meta property="og:url" content="https://nga-jetclean.onrender.com/">
 <meta property="og:type" content="website">
