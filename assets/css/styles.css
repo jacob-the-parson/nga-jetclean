@@ -852,7 +852,7 @@ img {
 }
 
 #process {
-    padding-top: 10px; /* Reduced from 60px */
+    padding-top: 0px; /* Reduced from 60px */
 }
 
 /* Custom section header styling for surface guide */
