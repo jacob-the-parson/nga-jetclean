@@ -301,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function initializeSlideshows() {
         const slideshowContainers = document.querySelectorAll('.image-slideshow-container');
         
-        slideshowContainers.forEach(container => {
+        slideshowContainers.forEach((container, containerIndex) => {
             // Use picture elements for slideshow images
             const slideshowPictures = container.querySelectorAll('.slideshow-img');
             const skeleton = container.querySelector('.image-skeleton');
@@ -352,9 +352,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 slideshowPictures[currentIndex].style.display = 'block';
             }
             
-            // Start rotation after a delay
+            // Start rotation after a staggered delay
             if (slideshowPictures.length > 1) {
-                setInterval(rotateImages, 3000);
+                // Add 1.5 second offset for each slideshow
+                const staggerDelay = containerIndex * 1500;
+                setTimeout(() => {
+                    setInterval(rotateImages, 3000);
+                    console.log(`Started slideshow ${containerIndex + 1} after ${staggerDelay}ms delay`);
+                }, staggerDelay);
             }
         });
     }
