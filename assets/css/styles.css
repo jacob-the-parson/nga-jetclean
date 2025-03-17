@@ -527,28 +527,42 @@ img {
     gap: var(--spacing-xl);
 }
 
-.feature-card {
-    background-color: var(--light-bg);
-    border-radius: var(--radius-lg);
-    padding: 30px;
-    text-align: center;
-    transition: all 0.3s ease;
-    border-bottom: 3px solid var(--primary-color);
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: var(--shadow-md);
+.feature-card, .video-item {
     opacity: 0;
     transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* Add highlight styles */
+/* Initial state - cards visible but no animations */
+.feature-card.initial-state,
+.video-item.initial-state {
+    opacity: 1;
+    transform: translateY(0);
+    transition: none;
+}
+
+/* In-view state */
+.feature-card.in-view,
+.video-item.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Out-view state for mobile */
+.feature-card.out-view,
+.video-item.out-view {
+    opacity: 0.7;
+    transform: translateY(0);
+}
+
+/* Highlight effect */
 .feature-card.highlight {
     border-bottom-color: var(--accent-color);
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
 }
 
+/* Water drop animation */
 .feature-card.highlight::after {
     animation: water-drop 1.5s ease-in infinite;
     opacity: 0.8;
@@ -599,16 +613,6 @@ img {
 
 /* Desktop hover effects */
 @media (hover: hover) and (min-width: 768px) {
-    .feature-card {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .video-item {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
     .feature-card:hover {
         transform: translateY(-5px);
         box-shadow: var(--shadow-lg);

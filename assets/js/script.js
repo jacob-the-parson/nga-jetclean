@@ -163,33 +163,9 @@ function initializeImmediateFeatures() {
     // Show cards immediately with initial state
     const animatedElements = document.querySelectorAll('.feature-card, .video-item');
     animatedElements.forEach(element => {
-        element.style.opacity = '1';
-        element.style.transform = 'translateY(0)';
+        // Add a class to indicate initial state
+        element.classList.add('initial-state');
     });
-    
-    // Mobile menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (menuToggle) {
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            
-            // Change icon based on menu state
-            const icon = menuToggle.querySelector('i');
-            if (navMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-                // Ensure hardware acceleration for smoother animations
-                navMenu.style.transform = 'translateX(0)';
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-                // Reset transform for mobile optimization
-                navMenu.style.transform = 'translateX(-100%)';
-            }
-        });
-    }
     
     // Initialize slideshows
     initializeSlideshows();
@@ -442,13 +418,12 @@ function initScrollAnimations() {
     // Set initial state for elements
     const animatedElements = document.querySelectorAll('.feature-card, .video-item');
     
-    // Reset elements for scroll animations
+    // Initial check for elements in viewport
     animatedElements.forEach(element => {
-        // Only reset if not already in view
-        if (!isInViewport(element)) {
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(20px)';
-        } else {
+        // Remove initial state class
+        element.classList.remove('initial-state');
+        
+        if (isInViewport(element)) {
             element.classList.add('in-view');
             if (element.classList.contains('feature-card')) {
                 element.classList.add('highlight');
@@ -471,9 +446,6 @@ function initScrollAnimations() {
             }
         });
     }
-    
-    // Initial check for elements in viewport
-    handleScrollAnimations();
     
     // Add scroll event listener with throttling
     let ticking = false;
@@ -505,6 +477,9 @@ function initScrollAnimations() {
             });
         }, 250);
     });
+    
+    // Trigger initial animation check
+    handleScrollAnimations();
 }
 
 // Initialize slideshows
