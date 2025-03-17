@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const slideshowContainers = document.querySelectorAll('.image-slideshow-container');
         
         slideshowContainers.forEach(container => {
-            const images = container.querySelectorAll('.slideshow-img');
+            const images = container.querySelectorAll('.slideshow-img img');
             const skeleton = container.querySelector('.image-skeleton');
             let currentIndex = 0;
             let imagesLoaded = 0;
@@ -318,32 +318,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 img.addEventListener('error', () => {
                     console.error('Error loading image:', img.src);
                     imagesLoaded++;
+                    checkAllImagesLoaded();
                 });
             });
             
             function handleImageLoad(img) {
-                img.classList.add('loaded');
                 imagesLoaded++;
+                img.closest('.slideshow-img').classList.add('loaded');
                 
-                // When all images are loaded, remove skeleton
-                if (imagesLoaded === images.length) {
-                    skeleton.style.display = 'none';
+                // Show first image immediately once loaded
+                if (imagesLoaded === 1) {
+                    img.closest('.slideshow-img').style.display = 'block';
                 }
                 
-                // Show first image
-                if (imagesLoaded === 1) {
-                    images[0].style.display = 'block';
+                checkAllImagesLoaded();
+            }
+            
+            function checkAllImagesLoaded() {
+                // Remove skeleton when all images are loaded
+                if (imagesLoaded === images.length && skeleton) {
+                    skeleton.style.display = 'none';
                 }
             }
             
             // Slideshow rotation
             function rotateImages() {
-                images.forEach(img => img.style.display = 'none');
-                currentIndex = (currentIndex + 1) % images.length;
-                images[currentIndex].style.display = 'block';
+                const slides = container.querySelectorAll('.slideshow-img');
+                slides.forEach(slide => slide.style.display = 'none');
+                currentIndex = (currentIndex + 1) % slides.length;
+                slides[currentIndex].style.display = 'block';
             }
             
-            // Start rotation after all images are loaded
+            // Start rotation after a delay
             if (images.length > 1) {
                 setInterval(rotateImages, 3000);
             }
