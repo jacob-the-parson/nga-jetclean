@@ -3007,6 +3007,39 @@ li a.nav-cta-button {
         width: 100%;
         max-width: 300px;
     }
+    
+    .season-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        justify-content: center;
+        margin-bottom: 20px;
+        max-width: 220px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .season-tab {
+        padding: 10px;
+        min-width: unset;
+        margin: 0;
+        width: 100%;
+        max-width: 100%;
+        border: 1px solid rgba(0, 82, 155, 0.15);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border-radius: var(--radius-md);
+        aspect-ratio: 1 / 1;
+    }
+    
+    .season-tab i {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
 }
 
 /* Extra Small Mobile Styles - Up to 480px */
@@ -3275,6 +3308,27 @@ li a.nav-cta-button {
     }
     
     .footer-bottom p {
+        font-size: var(--font-size-xs);
+    }
+    
+    .season-tabs {
+        gap: 8px;
+        max-width: 180px;
+    }
+    
+    .season-tab {
+        padding: 8px;
+        width: 100%;
+        max-width: 100%;
+        border: 1px solid rgba(0, 82, 155, 0.15);
+    }
+    
+    .season-tab i {
+        font-size: 16px;
+        margin-bottom: 4px;
+    }
+    
+    .season-tab span {
         font-size: var(--font-size-xs);
     }
 }
