@@ -225,7 +225,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const windowHeight = window.innerHeight || document.documentElement.clientHeight;
         
         // Element is considered in view when it's 30% visible
-        const threshold = windowHeight * 0.3;
+        const threshold = windowHeight * 0.4;
         
         return (
             rect.top <= (windowHeight - threshold) &&
