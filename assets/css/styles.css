@@ -1053,7 +1053,7 @@ img {
     transform: translateX(-50%);
     z-index: 2;
     box-shadow: var(--shadow-md);
-    transition: var(--transition-standard);
+    transition: background-color 0.3s ease;
 }
 
 .timeline-content {
@@ -1062,7 +1062,6 @@ img {
     padding: 20px;
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
-    transition: var(--transition-standard);
 }
 
 .timeline-content h4 {
@@ -1076,17 +1075,9 @@ img {
     font-size: var(--font-size-md);
 }
 
-/* Timeline hover effects */
-.timeline-item:hover .timeline-icon {
+/* Remove hover effects and only keep the in-view state */
+.timeline-item.in-view .timeline-icon {
     background-color: var(--accent-color);
-    transform: translateX(-50%) scale(1.1);
-    box-shadow: var(--shadow-lg);
-}
-
-.timeline-item:hover .timeline-content {
-    box-shadow: var(--primary-shadow);
-    transform: translateY(-5px);
-    background-color: var(--white);
 }
 
 /* ======================================
@@ -3708,16 +3699,12 @@ li a.nav-cta-button {
     .timeline-item:nth-child(odd),
     .timeline-item:nth-child(even) {
         flex-direction: column;
-        margin: 0 0 60px; /* Increased margin to accommodate icon */
+        margin: 0 0 60px;
         position: relative;
         background: var(--white);
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow-md);
         overflow: visible;
-        opacity: 0; /* Start hidden */
-        transform: translateY(20px); /* Start offset */
-        transition: opacity 0.5s ease, transform 0.5s ease;
-        isolation: isolate;
         width: 100%;
         max-width: 500px;
         left: 0 !important;
@@ -3731,7 +3718,7 @@ li a.nav-cta-button {
     .timeline-icon {
         position: absolute;
         left: 50%;
-        top: -28px; /* Half of icon height */
+        top: -28px;
         transform: translateX(-50%);
         width: 56px;
         height: 56px;
@@ -3744,8 +3731,6 @@ li a.nav-cta-button {
         align-items: center;
         justify-content: center;
         box-shadow: var(--shadow-md);
-        pointer-events: none;
-        transition: none; /* Remove transitions */
     }
     
     .timeline-content,
@@ -3753,7 +3738,7 @@ li a.nav-cta-button {
     .timeline-item:nth-child(even) .timeline-content {
         width: 100%;
         margin: 0;
-        padding: 25px 20px; /* Reduced top padding */
+        padding: 25px 20px;
         text-align: center;
         background: var(--white);
         display: flex;
@@ -3761,7 +3746,6 @@ li a.nav-cta-button {
         align-items: center;
         position: relative;
         z-index: 1;
-        transition: none; /* Remove transitions */
     }
     
     .timeline-content h4 {
@@ -3783,110 +3767,24 @@ li a.nav-cta-button {
         margin: 0;
     }
 
-    /* Mobile scroll animation states */
-    .timeline-item.in-view {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .timeline-item.out-view {
-        opacity: 0.7;
-    }
-
-    /* Remove ALL hover and touch effects on mobile */
-    .timeline-item:hover,
-    .timeline-item:active,
-    .timeline-item:focus {
-        transform: none !important;
-        box-shadow: var(--shadow-md) !important;
-    }
-
-    .timeline-item:hover .timeline-icon,
-    .timeline-item:active .timeline-icon,
-    .timeline-item:focus .timeline-icon {
-        transform: translateX(-50%) !important;
-        background-color: var(--primary-color) !important;
-        box-shadow: var(--shadow-md) !important;
-    }
-
-    .timeline-item:hover .timeline-content,
-    .timeline-item:active .timeline-content,
-    .timeline-item:focus .timeline-content {
-        transform: none !important;
-        box-shadow: none !important;
-        background-color: var(--white) !important;
-    }
-
-    /* Stagger animation delays */
-    .timeline-item:nth-child(1) {
-        transition-delay: 0.1s;
-    }
-    
-    .timeline-item:nth-child(2) {
-        transition-delay: 0.2s;
-    }
-    
-    .timeline-item:nth-child(3) {
-        transition-delay: 0.3s;
-    }
-    
-    .timeline-item:nth-child(4) {
-        transition-delay: 0.4s;
+    /* Only keep the color change when in view */
+    .timeline-item.in-view .timeline-icon {
+        background-color: var(--accent-color);
     }
 }
 
 /* Desktop styles */
-@media (hover: hover) and (min-width: 768px) {
+@media (min-width: 768px) {
     .timeline-item {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
     }
 
-    .timeline-item:hover .timeline-icon {
-        background-color: var(--accent-color);
-        transform: translateX(-50%) scale(1.1);
-        box-shadow: var(--shadow-lg);
-    }
-
-    .timeline-item:hover .timeline-content {
-        box-shadow: var(--primary-shadow);
-        transform: translateY(-5px);
-        background-color: var(--white);
-    }
-}
-
-/* Extra small mobile adjustments */
-@media screen and (max-width: 480px) {
-    .timeline-container {
-        max-width: calc(100% - 20px);
-    }
-    
-    .timeline-item,
-    .timeline-item:nth-child(odd),
-    .timeline-item:nth-child(even) {
-        margin: 0 0 50px;
-    }
-    
     .timeline-icon {
-        width: 48px;
-        height: 48px;
-        font-size: 18px;
-        top: -24px;
+        transition: background-color 0.3s ease;
     }
-    
-    .timeline-content,
-    .timeline-item:nth-child(odd) .timeline-content,
-    .timeline-item:nth-child(even) .timeline-content {
-        padding: 20px 15px;
-    }
-    
-    .timeline-content h4 {
-        font-size: var(--font-size-md);
-        margin-bottom: 10px;
-    }
-    
-    .timeline-content p {
-        font-size: var(--font-size-sm);
-        line-height: 1.5;
+
+    .timeline-item.in-view .timeline-icon {
+        background-color: var(--accent-color);
     }
 }
