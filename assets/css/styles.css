@@ -3691,13 +3691,13 @@ li a.nav-cta-button {
 /* Timeline Styles */
 @media screen and (max-width: 767px) {
     .timeline-container {
-        padding: 30px 0 15px; /* Removed horizontal padding to allow cards to center properly */
-        margin: 20px auto; /* Added auto margins for centering */
-        max-width: calc(100% - 30px); /* Added max-width with margin space */
+        padding: 30px 0 15px;
+        margin: 20px auto;
+        max-width: calc(100% - 30px);
         position: relative;
         display: flex;
         flex-direction: column;
-        align-items: center; /* Center align the container contents */
+        align-items: center;
     }
     
     .timeline-line {
@@ -3708,19 +3708,20 @@ li a.nav-cta-button {
     .timeline-item:nth-child(odd),
     .timeline-item:nth-child(even) {
         flex-direction: column;
-        margin: 0 0 40px; /* Removed horizontal margins */
+        margin: 0 0 40px;
         position: relative;
         background: var(--white);
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow-md);
         overflow: visible;
-        transform: translateY(0);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        opacity: 1; /* Set default opacity to 1 */
+        transform: translateY(0); /* Reset default transform */
+        transition: all 0.5s ease;
         isolation: isolate;
-        width: 100%; /* Set full width */
-        max-width: 500px; /* Add max-width for larger screens */
-        left: 0 !important; /* Remove any left positioning */
-        right: 0 !important; /* Remove any right positioning */
+        width: 100%;
+        max-width: 500px;
+        left: 0 !important;
+        right: 0 !important;
     }
     
     .timeline-item:last-child {
@@ -3743,7 +3744,7 @@ li a.nav-cta-button {
         align-items: center;
         justify-content: center;
         box-shadow: var(--shadow-md);
-        transition: all 0.3s ease;
+        transition: all 0.5s ease;
     }
     
     .timeline-content,
@@ -3780,25 +3781,56 @@ li a.nav-cta-button {
         margin: 0;
     }
 
-    /* Enhanced hover/active states */
-    .timeline-item:hover,
-    .timeline-item:active {
-        transform: translateY(-3px);
-        box-shadow: var(--shadow-lg);
+    /* Mobile scroll animation states */
+    .timeline-item {
+        opacity: 0;
+        transform: translateY(20px);
     }
 
-    .timeline-item:hover .timeline-icon,
-    .timeline-item:active .timeline-icon {
+    .timeline-item.in-view {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .timeline-item.in-view .timeline-icon {
         background: var(--accent-color);
-        transform: translate(-50%, -50%) scale(1.1);
-        box-shadow: var(--primary-shadow);
+    }
+
+    .timeline-item.out-view {
+        opacity: 0.7;
+        transform: translateY(0);
+    }
+
+    /* Stagger animation delays */
+    .timeline-item:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+    
+    .timeline-item:nth-child(2) {
+        transition-delay: 0.2s;
+    }
+    
+    .timeline-item:nth-child(3) {
+        transition-delay: 0.3s;
+    }
+    
+    .timeline-item:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+}
+
+/* Desktop styles */
+@media (hover: hover) and (min-width: 768px) {
+    .timeline-item {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
     }
 }
 
 /* Extra small mobile adjustments */
 @media screen and (max-width: 480px) {
     .timeline-container {
-        max-width: calc(100% - 20px); /* Slightly smaller margin for mobile */
+        max-width: calc(100% - 20px);
     }
     
     .timeline-item,
