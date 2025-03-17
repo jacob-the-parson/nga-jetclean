@@ -13,6 +13,100 @@ if ('serviceWorker' in navigator) {
 
 // Wait for DOM to fully load
 document.addEventListener('DOMContentLoaded', function() {
+    // Store initial scroll position
+    let initialScrollPosition = window.scrollY;
+    let isInitialLoadComplete = false;
+
+    // Function to restore scroll position
+    function restoreScrollPosition() {
+        if (!isInitialLoadComplete && initialScrollPosition > 0) {
+            window.scrollTo(0, initialScrollPosition);
+        }
+    }
+
+    // Initialize scroll animations immediately but with loading state tracking
+    function initScrollAnimationsWithLoading() {
+        const animatedElements = document.querySelectorAll('.feature-card, .video-item');
+        
+        // Add hover effect for desktop
+        if (window.innerWidth > 767) {
+            animatedElements.forEach(element => {
+                if (element.classList.contains('feature-card')) {
+                    element.addEventListener('mouseenter', () => {
+                        element.classList.add('highlight');
+                    });
+                    element.addEventListener('mouseleave', () => {
+                        if (!element.classList.contains('in-view')) {
+                            element.classList.remove('highlight');
+                        }
+                    });
+                }
+            });
+        }
+
+        // Track loading state per section
+        animatedElements.forEach(element => {
+            const images = element.getElementsByTagName('img');
+            let sectionImagesLoaded = 0;
+            const totalSectionImages = images.length;
+
+            function handleSectionImageLoad() {
+                sectionImagesLoaded++;
+                if (sectionImagesLoaded === totalSectionImages) {
+                    // Section is fully loaded, check if in viewport
+                    if (isInViewport(element)) {
+                        element.classList.add('in-view');
+                        if (element.classList.contains('feature-card')) {
+                            element.classList.add('highlight');
+                        }
+                    }
+                }
+            }
+
+            // Check images in this section
+            Array.from(images).forEach(img => {
+                if (img.complete) {
+                    handleSectionImageLoad();
+                } else {
+                    img.addEventListener('load', handleSectionImageLoad);
+                    img.addEventListener('error', handleSectionImageLoad);
+                }
+            });
+
+            // If no images, initialize immediately
+            if (totalSectionImages === 0) {
+                if (isInViewport(element)) {
+                    element.classList.add('in-view');
+                    if (element.classList.contains('feature-card')) {
+                        element.classList.add('highlight');
+                    }
+                }
+            }
+        });
+
+        // Add scroll event listener with throttling
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    handleScrollAnimations();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    }
+
+    // Initialize critical content first
+    initScrollAnimationsWithLoading();
+    initializeSlideshows();
+
+    // Track overall page load for scroll position restoration
+    window.addEventListener('load', () => {
+        isInitialLoadComplete = true;
+        restoreScrollPosition();
+    });
+
     // Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('.nav-menu');
@@ -135,6 +229,11 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Active Menu Item on Scroll
     window.addEventListener('scroll', function() {
+        if (!isInitialLoadComplete) {
+            initialScrollPosition = window.scrollY;
+            return;
+        }
+
         const scrollPosition = window.scrollY;
         
         // Add box shadow to navigation on scroll
@@ -271,65 +370,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize scroll animations
-    function initScrollAnimations() {
-        // Set initial state for elements
-        const animatedElements = document.querySelectorAll('.feature-card, .video-item');
-        
-        // Add hover effect for desktop
-        if (window.innerWidth > 767) {
-            animatedElements.forEach(element => {
-                if (element.classList.contains('feature-card')) {
-                    element.addEventListener('mouseenter', () => {
-                        element.classList.add('highlight');
-                    });
-                    element.addEventListener('mouseleave', () => {
-                        if (!element.classList.contains('in-view')) {
-                            element.classList.remove('highlight');
-                        }
-                    });
-                }
-            });
-        }
-        
-        // Initial check for elements in viewport
-        handleScrollAnimations();
-        
-        // Add scroll event listener with throttling
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    handleScrollAnimations();
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
-        
-        // Handle resize events
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                handleScrollAnimations();
-                
-                // Update hover effects based on screen size
-                const isDesktop = window.innerWidth > 767;
-                animatedElements.forEach(element => {
-                    if (element.classList.contains('feature-card')) {
-                        if (!isDesktop && !element.classList.contains('in-view')) {
-                            element.classList.remove('highlight');
-                        }
-                    }
-                });
-            }, 250);
-        });
-    }
-    
-    // Initialize scroll animations when DOM is loaded
-    initScrollAnimations();
-    
     // Initialize slideshows
     function initializeSlideshows() {
         const slideshowContainers = document.querySelectorAll('.image-slideshow-container');
@@ -431,9 +471,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-    // Initialize slideshows when DOM is loaded
-    initializeSlideshows();
     
     // Before/After image rotation for any remaining cards with before/after containers
     const beforeAfterContainers = document.querySelectorAll('.image-wrapper .before-after-container');
