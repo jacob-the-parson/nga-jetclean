@@ -302,17 +302,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const slideshowContainers = document.querySelectorAll('.image-slideshow-container');
         
         slideshowContainers.forEach(container => {
-            const images = container.querySelectorAll('.slideshow-img img');
+            // Use picture elements for slideshow images
+            const slideshowPictures = container.querySelectorAll('.slideshow-img');
             const skeleton = container.querySelector('.image-skeleton');
             let currentIndex = 0;
             let imagesLoaded = 0;
             
-            // Handle image loading
-            images.forEach(img => {
+            // Handle image loading for each picture element
+            slideshowPictures.forEach(picture => {
+                const img = picture.querySelector('img');
+                if (!img) return;
+                
                 if (img.complete) {
-                    handleImageLoad(img);
+                    handleImageLoad(picture);
                 } else {
-                    img.addEventListener('load', () => handleImageLoad(img));
+                    img.addEventListener('load', () => handleImageLoad(picture));
                 }
                 
                 img.addEventListener('error', () => {
@@ -322,13 +326,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
             
-            function handleImageLoad(img) {
+            function handleImageLoad(picture) {
                 imagesLoaded++;
-                img.closest('.slideshow-img').classList.add('loaded');
+                picture.classList.add('loaded');
                 
                 // Show first image immediately once loaded
                 if (imagesLoaded === 1) {
-                    img.closest('.slideshow-img').style.display = 'block';
+                    picture.style.display = 'block';
                 }
                 
                 checkAllImagesLoaded();
@@ -336,21 +340,20 @@ document.addEventListener('DOMContentLoaded', function() {
             
             function checkAllImagesLoaded() {
                 // Remove skeleton when all images are loaded
-                if (imagesLoaded === images.length && skeleton) {
+                if (imagesLoaded === slideshowPictures.length && skeleton) {
                     skeleton.style.display = 'none';
                 }
             }
             
             // Slideshow rotation
             function rotateImages() {
-                const slides = container.querySelectorAll('.slideshow-img');
-                slides.forEach(slide => slide.style.display = 'none');
-                currentIndex = (currentIndex + 1) % slides.length;
-                slides[currentIndex].style.display = 'block';
+                slideshowPictures.forEach(picture => picture.style.display = 'none');
+                currentIndex = (currentIndex + 1) % slideshowPictures.length;
+                slideshowPictures[currentIndex].style.display = 'block';
             }
             
             // Start rotation after a delay
-            if (images.length > 1) {
+            if (slideshowPictures.length > 1) {
                 setInterval(rotateImages, 3000);
             }
         });
