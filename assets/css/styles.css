@@ -105,7 +105,7 @@ body {
 }
 
 section {
-    padding: 60px 0;
+    padding: 50px 0;
 }
 
 /* ======================================
@@ -1346,7 +1346,8 @@ img {
    FAQ Component Styles
 ====================================== */
 .faq-container {
-    margin: 40px 0;
+    margin: 10px 0;
+    padding-top: 15px;
 }
 
 .faq-item {
@@ -1665,14 +1666,9 @@ li a.nav-cta-button {
 /* ======================================
    Seasonal Maintenance Tips Styles
 ====================================== */
-.seasons-container {
-    margin: 40px 0;
-}
-
 .season-tabs {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
     flex-wrap: wrap;
 }
 
@@ -3442,7 +3438,6 @@ li a.nav-cta-button {
     /* Calculator Responsive */
     .calculator-container {
         padding: 15px;
-        margin: 20px 0;
     }
     
     .calculator-form label {
