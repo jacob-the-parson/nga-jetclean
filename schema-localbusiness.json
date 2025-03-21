@@ -2,15 +2,15 @@
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "@id": "https://nga-jetclean.onrender.com/#organization",
-  "name": "North Georgia Jet Clean",
-  "alternateName": "North GA Jet Clean",
-  "description": "Professional pressure washing services with Southern hospitality. Serving Cobb County and Greater North Georgia since 2015.",
+  "name": "Davis Pro Services LLC",
+  "alternateName": "Davis Pro Services",
+  "description": "Professional pressure washing services with Southern hospitality.",
   "url": "https://nga-jetclean.onrender.com/",
   "logo": "https://nga-jetclean.onrender.com/images/logo.png",
   "image": "https://nga-jetclean.onrender.com/images/home-hero-image.jpg",
   "priceRange": "$$",
   "telephone": "+15551234567",
-  "email": "info@northgeorgiajetclean.com",
+  "email": "info@davisproservicesllc.com",
   "currenciesAccepted": "USD",
   "paymentAccepted": "Cash, Credit Card, Debit Card, Check",
   "founder": {
@@ -53,10 +53,10 @@
     }
   ],
   "sameAs": [
-    "https://www.facebook.com/northgeorgiajetclean",
-    "https://www.instagram.com/northgeorgiajetclean",
-    "https://twitter.com/ngajetclean",
-    "https://www.yelp.com/biz/north-georgia-jet-clean-marietta"
+    "https://www.facebook.com/davisproservicesllc",
+    "https://www.instagram.com/davisproservicesllc",
+    "https://twitter.com/davisproservicesllc",
+    "https://www.yelp.com/biz/davis-pro-services-llc-marietta"
   ],
   "areaServed": [
     {
@@ -226,7 +226,7 @@
         "name": "Michael Thompson"
       },
       "datePublished": "2023-04-15",
-      "reviewBody": "North Georgia Jet Clean transformed our home's exterior! The siding looks brand new, and they were able to remove years of grime from our driveway. Andy and his team were professional and thorough."
+      "reviewBody": "Davis Pro Services LLC transformed our home's exterior! The siding looks brand new, and they were able to remove years of grime from our driveway. Andy and his team were professional and thorough."
     },
     {
       "@type": "Review",
@@ -240,7 +240,7 @@
         "name": "Jennifer Williams"
       },
       "datePublished": "2023-03-22",
-      "reviewBody": "As a business owner, I need my storefront to look inviting. North Georgia Jet Clean keeps our sidewalks and exterior spotless with their regular maintenance service. Highly recommend!"
+      "reviewBody": "As a business owner, I need my storefront to look inviting. Davis Pro Services LLC keeps our sidewalks and exterior spotless with their regular maintenance service. Highly recommend!"
     }
   ],
   "aggregateRating": {
@@ -250,4 +250,6 @@
     "bestRating": "5",
     "worstRating": "1"
   }
-} 
+}
+
+
