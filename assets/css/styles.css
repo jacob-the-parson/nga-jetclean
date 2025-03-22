@@ -10,9 +10,9 @@
  */
  :root {
     /* Colors */
-    --primary-color: #36e691;       /* MINT GREEN */
+    --primary-color: #0e0e0e;       /* MINT GREEN */
     --primary-color-dark: #2cb77c;  /* DARKER MINT GREEN */
-    --accent-color: #4FA3D7;        /* COMPLEMENTARY LIGHT BLUE */
+    --accent-color: #36e691;        /* COMPLEMENTARY LIGHT BLUE */
     --accent-color-light: #7FBCE4;  /* LIGHTER BLUE */
     --accent-color-dark: #2B8BC8;   /* DARKER BLUE */
 
@@ -1455,7 +1455,7 @@ nav .container {
 
 .logo h1 {
     font-size: 24px;
-    color: var(--primary-color);
+    color: var(--accent-color);
     white-space: nowrap;
 }
 
